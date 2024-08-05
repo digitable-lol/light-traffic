@@ -1,0 +1,63 @@
+# .NET
+bin/
+obj/
+*.log
+*.suo
+*.user
+*.userosscache
+*.suo
+*.vscode/
+*.idea/
+*.sln.docstates
+*.csproj.user
+
+# ASP.NET Core
+wwwroot/
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+secrets.json
+*.db
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.suo
+*.vs/
+*.vscode/
+*.idea/
+*.swp
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# NuGet
+.nuget/
+packages/
+*.nupkg
+
+# OS generated files
+Desktop.ini
+$RECYCLE.BIN/
+
+# JetBrains Rider
+.idea/
+*.suo
+*.user
+*.userosscache
+*.suo
+
+# Visual Studio Code
+.vscode/
+
+# ReSharper
+.idea/
+*.suo
+*.user
+*.userosscache
+*.suo
+
+# Entity Framework Core
+Migrations/
