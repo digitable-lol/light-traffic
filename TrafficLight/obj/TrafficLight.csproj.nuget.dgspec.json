@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Melichka\\Documents\\GitHub\\TrafficLight\\TrafficLight\\TrafficLight.csproj": {}
+    "C:\\Users\\Melichka\\Documents\\GitHub\\light-traffic\\application\\TrafficLight\\TrafficLight.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Melichka\\Documents\\GitHub\\TrafficLight\\TrafficLight\\TrafficLight.csproj": {
+    "C:\\Users\\Melichka\\Documents\\GitHub\\light-traffic\\application\\TrafficLight\\TrafficLight.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Melichka\\Documents\\GitHub\\TrafficLight\\TrafficLight\\TrafficLight.csproj",
+        "projectUniqueName": "C:\\Users\\Melichka\\Documents\\GitHub\\light-traffic\\application\\TrafficLight\\TrafficLight.csproj",
         "projectName": "TrafficLight",
-        "projectPath": "c:\\Users\\Melichka\\Documents\\GitHub\\TrafficLight\\TrafficLight\\TrafficLight.csproj",
+        "projectPath": "C:\\Users\\Melichka\\Documents\\GitHub\\light-traffic\\application\\TrafficLight\\TrafficLight.csproj",
         "packagesPath": "C:\\Users\\Melichka\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Melichka\\Documents\\GitHub\\TrafficLight\\TrafficLight\\obj\\",
+        "outputPath": "C:\\Users\\Melichka\\Documents\\GitHub\\light-traffic\\application\\TrafficLight\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
