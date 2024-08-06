@@ -18,22 +18,20 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // Настройка HTTP request pipeline
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Home/Error");
-	app.UseHsts();
+	app.UseSwagger();
+	app.UseSwaggerUI(c =>
+	{
+		c.SwaggerEndpoint("/swagger/v1/swagger.json", "TrafficLight API v1");
+		c.RoutePrefix = string.Empty; // Swagger UI будет доступен по корню URL
+	});
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Swagger middleware должно быть до UseRouting
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-	c.SwaggerEndpoint("/swagger/v1/swagger.json", "TrafficLight API v1");
-	c.RoutePrefix = string.Empty; // Swagger UI будет доступен по корню URL
-});
+
 
 app.UseRouting();
 app.UseAuthorization();
