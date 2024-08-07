@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TrafficLight.Data;
 using TrafficLight.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace TrafficLight.Controllers
 {
