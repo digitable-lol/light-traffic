@@ -4,7 +4,7 @@ import home from "../../assets/home.svg";
 
 import "./styles.css";
 
-const Header = () => {
+const HomeButton = () => {
   return (
     <div className="home-button">
       <img src={home} alt="home" width="16" height="16" />
@@ -13,4 +13,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HomeButton;
