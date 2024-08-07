@@ -1,10 +1,15 @@
-import React from 'react';
-import Header from '../../components/Header/Header.tsx';
-
+import React from "react";
+import Header from "../../components/Header/Header.tsx";
+import HomeButton from "../../components/HomeButton/HomeButton.tsx";
 
 const ProjectPage = () => {
   return (
-    <Header></Header>
+    <div>
+      <Header />
+      <div>
+        <HomeButton />
+      </div>
+    </div>
   );
 };
 
