@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./styles.css";
 
-const CreateProjectButton = () => {
+interface CreateProjectButtonProps {
+  onClick: () => void;
+}
+
+const CreateProjectButton: React.FC<CreateProjectButtonProps> = ({
+  onClick,
+}) => {
   return (
-    <div className="create-project-button">
-      <p>создать проект</p>
-    </div>
+    <button className="create-project-button" onClick={onClick}>
+      Создать проект
+    </button>
   );
 };
 
