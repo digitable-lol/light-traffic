@@ -1,4 +1,4 @@
-.home-button {
+.project-button {
     display: inline-flex;
     background-color: rgba(0, 0, 0, 0.08);
     border-radius: 50px;
@@ -7,8 +7,4 @@
     padding: 0px 16px;
     margin: 0;
     height: 24px;
-}
-
-.home-button img {
-    margin-right: 8px;
 }
