@@ -4,6 +4,8 @@ import HomeButton from "../../components/HomeButton/HomeButton.tsx";
 import settings from "../../assets/settings.svg";
 import CreateProjectButton from "../../components/CreateProjectButton/CreateProjectButton.tsx";
 import "./styles.css";
+import SearchBar from "../../components/SearchBar/SearchBar.tsx";
+import ProjectCard from "../../components/ProjectCard/ProjectCard.tsx";
 
 const ProjectPage = () => {
   return (
@@ -17,6 +19,10 @@ const ProjectPage = () => {
             <h2>Список проектов</h2>
           </div>
           <CreateProjectButton />
+        </div>
+        <SearchBar />
+        <div className="main-project">
+          <ProjectCard />
         </div>
       </div>
     </div>
