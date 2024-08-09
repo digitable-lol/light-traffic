@@ -5,6 +5,7 @@ import HomeButton from "../../components/HomeButton/HomeButton.tsx";
 import ProjectButton from "../../components/ProjectButton/ProjectButton.tsx";
 import stack from "../../assets/stack.svg";
 import CreateReportButton from "../../components/CreateReportButton/CreateReportButton.tsx";
+import ReportSearchBar from "../../components/ReportSearchBar/ReportSearchBar.tsx";
 
 const ReportPage = () => {
   return (
@@ -23,7 +24,11 @@ const ReportPage = () => {
           </div>
           <CreateReportButton />
         </div>
-        <div className="main-info"></div>
+        <div className="main-info">
+          <div className="main-info-nav">
+            <ReportSearchBar />
+          </div>
+        </div>
       </div>
     </div>
   );
