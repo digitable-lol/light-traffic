@@ -1,22 +1,26 @@
-import { createTheme } from "@mui/material";
-import { ThemeEnum } from "@src/@types/theme/enum";
-import { ReactNode, useState } from "react";
-import { ThemeProvider } from "styled-components";
-import { ThemeContext } from "./Theme.hooks";
-import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "styled-components"
+
+import { ReactNode, useState } from "react"
+
+import { createTheme } from "@mui/material"
+import CssBaseline from "@mui/material/CssBaseline"
+
+import { ThemeEnum } from "src/types/theme/enum"
+
+import { ThemeContext } from "./Theme.hooks"
 
 interface ThemeProps {
-  children?: ReactNode | ReactNode[];
+  children?: ReactNode | ReactNode[]
 }
 
 export const Theme: React.FC<ThemeProps> = ({ children }) => {
-  const [currentTheme, setCurrentTheme] = useState(ThemeEnum.Dark);
+  const [currentTheme, setCurrentTheme] = useState(ThemeEnum.Light)
 
   const theme = createTheme({
     palette: {
       mode: currentTheme,
     },
-  });
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -31,5 +35,5 @@ export const Theme: React.FC<ThemeProps> = ({ children }) => {
         {children}
       </ThemeContext.Provider>
     </ThemeProvider>
-  );
-};
+  )
+}

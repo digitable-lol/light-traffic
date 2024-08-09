@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 const Container = styled.div`
-    width: 100vw;
-    height: 60px;
+  width: 100vw;
+  height: 60px;
 `
 
 export default { Container }

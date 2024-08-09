@@ -1,6 +1,7 @@
-import { Layout } from "@src/components/Layout/Layout";
-import { Home } from "@src/pages/Home";
-import { RouteObject, useRoutes } from "react-router-dom";
+import { RouteObject, useRoutes } from "react-router-dom"
+
+import { Layout } from "src/components/Layout/Layout"
+import { Home } from "src/pages/Home"
 
 const routes: RouteObject[] = [
   {
@@ -8,10 +9,10 @@ const routes: RouteObject[] = [
     element: <Layout />,
     children: [{ index: true, element: <Home /> }],
   },
-];
+]
 
 export const AppRouter = () => {
-  const application = useRoutes(routes);
+  const application = useRoutes(routes)
 
   return <>{application}</>
 }
