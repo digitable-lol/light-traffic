@@ -7,5 +7,8 @@ export const ThemeContext = createContext<ThemeContextTypes>({} as ThemeContextT
 export const useTheme = () => {
   const context = useContext(ThemeContext)
 
-  return context
+  return {
+    theme: context.theme,
+    change: context.change,
+  }
 }
