@@ -1,8 +1,17 @@
-import React from "react";
-import "./styles.css";
+import React from "react"
 
-const CreateReportButton = () => {
-  return <button className="create-report-button">Создать отчет</button>;
-};
+import { Button } from "@mui/material"
 
-export default CreateReportButton;
+interface CreateReportButtonProps {
+  onClick?: () => void
+}
+
+export const CreateReportButton: React.FC<CreateReportButtonProps> = ({ onClick }) => {
+  return (
+    <Button variant="contained" color="primary" onClick={onClick}>
+      Create Report
+    </Button>
+  )
+}
+
+export default CreateReportButton

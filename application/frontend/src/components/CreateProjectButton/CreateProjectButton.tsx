@@ -1,18 +1,17 @@
-import React from "react";
-import "./styles.css";
+import React from "react"
+
+import { StyledButton } from "./CreateProjectButton.styled"
 
 interface CreateProjectButtonProps {
-  onClick: () => void;
+  onClick: () => void
 }
 
-const CreateProjectButton: React.FC<CreateProjectButtonProps> = ({
-  onClick,
-}) => {
+export const CreateProjectButton: React.FC<CreateProjectButtonProps> = ({ onClick }) => {
   return (
-    <button className="create-project-button" onClick={onClick}>
-      Создать проект
-    </button>
-  );
-};
+    <StyledButton variant="contained" color="primary" onClick={onClick}>
+      Create Project
+    </StyledButton>
+  )
+}
 
-export default CreateProjectButton;
+export default CreateProjectButton

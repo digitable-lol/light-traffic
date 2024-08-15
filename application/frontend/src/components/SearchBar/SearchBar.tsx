@@ -1,16 +1,53 @@
-import React from "react";
-import search from "../../assets/search.svg";
-import "./styles.css";
+import React from "react"
 
-const SearchBar: React.FC = () => {
+import ClearIcon from "@mui/icons-material/Clear"
+import ViewListIcon from "@mui/icons-material/ViewList"
+import ViewModuleIcon from "@mui/icons-material/ViewModule"
+import { Grid, InputAdornment } from "@mui/material"
+
+import { ClearButton, SearchContainer, SearchInput, ViewToggleButton } from "./SearchBar.styled"
+
+interface SearchBarProps {
+  searchQuery: string
+  onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  viewMode: "list" | "grid"
+  onToggleViewMode: () => void
+  onClearSearch: () => void
+}
+
+export const SearchBar: React.FC<SearchBarProps> = ({
+  searchQuery,
+  onSearchChange,
+  viewMode,
+  onToggleViewMode,
+  onClearSearch,
+}) => {
   return (
-    <div className="search-bar">
-      <button className="search-button">
-        <img src={search} alt="search" className="search-icon" />
-      </button>
-      <input type="text" placeholder="Search" className="search-input" />
-    </div>
-  );
-};
+    <SearchContainer container spacing={2}>
+      <Grid item xs={12} sm={6}>
+        <SearchInput
+          variant="standard"
+          placeholder="Search reports"
+          value={searchQuery}
+          onChange={onSearchChange}
+          InputProps={{
+            endAdornment: searchQuery ? (
+              <InputAdornment position="end">
+                <ClearButton onClick={onClearSearch}>
+                  <ClearIcon />
+                </ClearButton>
+              </InputAdornment>
+            ) : null,
+          }}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} container justifyContent="flex-end">
+        <ViewToggleButton onClick={onToggleViewMode}>
+          {viewMode === "list" ? <ViewModuleIcon /> : <ViewListIcon />}
+        </ViewToggleButton>
+      </Grid>
+    </SearchContainer>
+  )
+}
 
-export default SearchBar;
+export default SearchBar

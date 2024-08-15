@@ -1,18 +1,25 @@
-import React from "react";
-import monogram from "../../assets/Monogram.svg";
-import arrow_forward from "../../assets/arrow_forward.svg";
-import "./styles.css";
+import React from "react"
 
-const ProjectCard: React.FC = () => {
+import { ArrowForwardIos } from "@mui/icons-material"
+
+import { ArrowIcon, Avatar, CardContainer, ProjectName } from "./ProjectCard.styled"
+
+interface ProjectCardProps {
+  project: {
+    id: number
+    name: string
+    avatar: string
+  }
+}
+
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="project-card">
-      <div className="project-card-left">
-        <img src={monogram} alt="monogram" className="monogram-icon" />
-        <p className="project-name">Project name</p>
-      </div>
-      <img src={arrow_forward} alt="media" className="media-icon" />
-    </div>
-  );
-};
-
-export default ProjectCard;
+    <CardContainer>
+      <Avatar src={project.avatar} alt={project.name} />
+      <ProjectName>{project.name}</ProjectName>
+      <ArrowIcon>
+        <ArrowForwardIos />
+      </ArrowIcon>
+    </CardContainer>
+  )
+}

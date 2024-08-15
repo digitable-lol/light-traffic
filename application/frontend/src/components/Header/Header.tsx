@@ -1,29 +1,110 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Avatar from "../../assets/Avatar.svg";
-import email from "../../assets/email.svg";
-import notifications from "../../assets/notifications.svg";
-import aboba from "../../assets/aboba.svg";
-import "./styles.css";
+import React, { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 
-const Header = () => {
+import { AccountCircle, Message, MoreVert, Notifications } from "@mui/icons-material"
+import { Button, IconButton, Switch, Tooltip, Typography } from "@mui/material"
+
+import { UserController } from "src/api/controllers/UserController"
+import { useTheme } from "src/components/Theme"
+import { ThemeEnum } from "src/types/theme/enum"
+
+import {
+  Container,
+  IconButtons,
+  LeftSection,
+  Logo,
+  NavButtons,
+  RightSection,
+  Switches,
+} from "./Header.styled"
+
+export const Header: React.FC = () => {
+  const { theme, change } = useTheme()
+  const { t, i18n } = useTranslation()
+
+  useEffect(() => {
+    UserController.get()
+  }, [])
+
   return (
-    <div className="header">
-      <div className="logo">
-        <h2>Logo</h2>
-      </div>
-      <div className="nav">
-        <Link to="/231">Home</Link>
-        <Link to="/">Project</Link>
-      </div>
-      <div className="profile">
-        <img src={email} alt="email" width="28" height="28" />
-        <img src={notifications} alt="notifications" width="28" height="28" />
-        <img src={Avatar} alt="avatar" width="28" height="28" />
-        <img src={aboba} alt="aboba" width="28" height="28" />
-      </div>
-    </div>
-  );
-};
+    <Container>
+      <LeftSection>
+        <Logo>
+          <Typography variant="h6" component="div">
+            LOGO
+          </Typography>
+        </Logo>
+        <NavButtons>
+          <Button
+            onClick={() => console.log("Home clicked")}
+            sx={{
+              color: "inherit",
+              textDecoration: "none",
+              "&:hover": {
+                color: theme.palette.primary.main,
+                textDecoration: "underline",
+              },
+            }}
+          >
+            {t("home")}
+          </Button>
+          <Button
+            onClick={() => console.log("Projects clicked")}
+            sx={{
+              color: "inherit",
+              textDecoration: "none",
+              "&:hover": {
+                color: theme.palette.primary.main,
+                textDecoration: "underline",
+              },
+            }}
+          >
+            {t("projects")}
+          </Button>
+        </NavButtons>
+      </LeftSection>
 
-export default Header;
+      <RightSection>
+        <IconButtons>
+          <Tooltip title={t("messages")}>
+            <IconButton>
+              <Message />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={t("notifications")}>
+            <IconButton>
+              <Notifications />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={t("profile")}>
+            <IconButton>
+              <AccountCircle />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={t("more")}>
+            <IconButton>
+              <MoreVert />
+            </IconButton>
+          </Tooltip>
+        </IconButtons>
+
+        <Switches>
+          <Tooltip title={t("toggleTheme")}>
+            <Switch
+              onChange={(_, checked) => {
+                change(checked ? ThemeEnum.Dark : ThemeEnum.Light)
+              }}
+            />
+          </Tooltip>
+          <Tooltip title={t("changeLanguage")}>
+            <Switch
+              onChange={(_, checked) =>
+                checked ? i18n.changeLanguage("en") : i18n.changeLanguage("ru")
+              }
+            />
+          </Tooltip>
+        </Switches>
+      </RightSection>
+    </Container>
+  )
+}
