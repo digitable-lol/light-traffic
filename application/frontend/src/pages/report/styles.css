@@ -1,0 +1,28 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+    width: 100%;
+    padding: 2em;
+    position: relative;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+}
+
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
