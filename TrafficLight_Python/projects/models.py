@@ -41,7 +41,7 @@ class Project(models.Model):
     def __str__(self):
         return self.project_name
 
-class Stages(models.Model):
+class Objective(models.Model):
     COLOR_CHOICES = {
         "R": "Red",
         "G": "Green",

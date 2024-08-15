@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
                 ('stage_id', models.IntegerField(default=0)),
                 ('stage_name', models.CharField(max_length=100)),
                 ('stage_color', models.CharField(choices=[('R', 'Red'), ('G', 'Green'), ('Y', 'Yellow')], default='G', max_length=1)),
-                ('related_report', models.ForeignKey(default=projects.models.Stages.get_report_id, on_delete=django.db.models.deletion.CASCADE, to='projects.report')),
+                ('related_report', models.ForeignKey(default=projects.models.Objective.get_report_id, on_delete=django.db.models.deletion.CASCADE, to='projects.report')),
             ],
         ),
     ]
