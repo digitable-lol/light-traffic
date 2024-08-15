@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v3
       - name: telegram notifications
         if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
         run: |
