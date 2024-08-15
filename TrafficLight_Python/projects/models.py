@@ -1,4 +1,3 @@
-from typing import Any
 from django.db import models
 
 # Create your models here.
@@ -27,7 +26,7 @@ class Report(models.Model):
         return self.report_name 
     def get_project_id():
         return 0
-    report_creater = models.ForeignKey(to="Employee", on_delete="")
+    report_creater = models.OneToOneField(Employee, on_delete = models.DO_NOTHING,default=0)
     related_project = models.ForeignKey(to="Project",on_delete=models.CASCADE,default=0)
 
 class Project(models.Model):
