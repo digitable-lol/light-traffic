@@ -27,7 +27,7 @@ class Report(models.Model):
         return self.report_name 
     def get_project_id():
         return 0
-    report_creater = models.ForeignKey(to="Employee")
+    report_creater = models.ForeignKey(to="Employee", on_delete="")
     related_project = models.ForeignKey(to="Project",on_delete=models.CASCADE,default=0)
 
 class Project(models.Model):
