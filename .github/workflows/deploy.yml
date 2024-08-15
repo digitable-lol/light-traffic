@@ -1,0 +1,57 @@
+name: deployment
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/**"
+      - "application/frontend/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      issues: write
+      contents: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: application/frontend
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo '${{toJSON(github.event.head_commit)}}'
+      - name: telegram notifications
+        run: |
+          msg_text='New push to master:
+
+          ```json
+          ${{github.event.head_commit.author.name}}:
+
+          ${{github.event.head_commit.message}}
+
+          ```
+
+          [url](${{github.event.head_commit.url}})
+          '
+          curl -s -X POST 'https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage' \
+          -d "parse_mode=MarkdownV2&chat_id=${{ secrets.TG_CHAT_ID }}&text=${msg_text}&reply_to_message_id=${{ secrets.TG_MSG_ID }}"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 21.1.0
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      - run: npm ci
+      # - run: npm run format
+      # - run: npm run test
+      - run: npm run build
+
+      - name: release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

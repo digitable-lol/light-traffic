@@ -1,0 +1,47 @@
+on:
+  pull_request:
+    branches:
+      - dev
+      - master
+
+name: validation of code
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: application/frontend
+    name: linters, tests and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      issues: write
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: telegram notifications
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+        run: |
+          msg_text='New pull request to master:
+
+          Title:
+          ```json
+          ${{github.event.pull_request.title}}
+          ```
+
+          [Link](${{github.event.pull_request.html_url}})
+          '
+          curl -s -X POST 'https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage' \
+          -d "parse_mode=MarkdownV2&chat_id=${{ secrets.TG_CHAT_ID }}&text=${msg_text}&reply_to_message_id=${{ secrets.TG_MSG_ID }}"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: v21.1.0
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      - run: npm ci
+      # - run: npm run format
+      # - run: npm run test:coverage
+      - run: npm run build
