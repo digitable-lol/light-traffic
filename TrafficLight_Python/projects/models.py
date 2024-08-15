@@ -27,11 +27,10 @@ class Report(models.Model):
         return self.report_name 
     def get_project_id():
         return 0
+    report_creater = models.ForeignKey(to="Employee")
     related_project = models.ForeignKey(to="Project",on_delete=models.CASCADE,default=0)
 
 class Project(models.Model):
-    empl_choice = Employee.objects.all()
-
     project_id = models.IntegerField(default=0)
     project_name = models.CharField(max_length=100)
     project_discription = models.TextField(max_length=500)
@@ -47,9 +46,9 @@ class Objective(models.Model):
         "G": "Green",
         "Y": "Yellow",
     }
-    stage_id = models.IntegerField(default=0)
-    stage_name = models.CharField(max_length=100)
-    stage_color = models.CharField(max_length=1,choices=COLOR_CHOICES,default="G")
+    objective_id = models.IntegerField(default=0)
+    objective_name = models.CharField(max_length=100)
+    objective_color = models.CharField(max_length=1,choices=COLOR_CHOICES,default="G")
     def get_report_id():
         return 0
     related_report = models.ForeignKey(to = "Report", on_delete=models.CASCADE,default=0)
