@@ -31,7 +31,7 @@ jobs:
     defaults:
       run:
         working-directory: application/frontend
-    name: linters, tests and build
+    name: frontend - linters, tests and build
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -57,7 +57,7 @@ jobs:
     defaults:
       run:
         working-directory: application/backend
-    name: linters, tests and build
+    name: backend - linters, tests and build
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
