@@ -2,8 +2,8 @@ import { RouteObject, useRoutes } from "react-router-dom"
 
 import { Layout } from "../components/Layout/Layout"
 import { Home } from "../pages/Home"
-import { ProjectPage } from "../pages/Project"
-import { ReportPage } from "../pages/Report"
+import { ProjectPage } from "../pages/Project/Project"
+import { ReportPage } from "../pages/Report/Report"
 
 const routes: RouteObject[] = [
   {
