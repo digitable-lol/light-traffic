@@ -8,10 +8,10 @@ import { NavButton } from "src/components/NavButton"
 import ReportOverlay from "src/components/ReportOverlay/ReportOverlay"
 import ReportsTable from "src/components/ReportsTable/ReportsTable"
 import { SearchBar } from "src/components/SearchBar"
+import { SettingsButton } from "src/pages/project/Project.styled"
 
 import { Report } from "../../components/ReportsTable/ReportsTable"
 import { Header, StyledContainer, Title } from "./Report.styled"
-import { SettingsButton } from "src/pages/project/Project.styled"
 
 export const ReportPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("")

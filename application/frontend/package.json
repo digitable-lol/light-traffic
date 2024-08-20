@@ -12,7 +12,7 @@
     "dev": "vite dev",
     "start": "vite",
     "build": "tsc -b && vite build",
-    "build:demo": "tsc -b && vite build --outDir ../../demo --emptyOutDir",
+    "build:demo": "tsc -b && VITE_BASENAME='/light-traffic' vite build --outDir ../../demo --emptyOutDir",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier . --write",

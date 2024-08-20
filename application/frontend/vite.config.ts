@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react-swc"
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-  base: process.env.VITE_BASE_URL || '/'
-});
+  base: process.env.VITE_BASENAME || "/",
+})
