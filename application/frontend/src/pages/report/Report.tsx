@@ -10,8 +10,8 @@ import ReportsTable from "src/components/ReportsTable/ReportsTable"
 import { SearchBar } from "src/components/SearchBar"
 
 import { Report } from "../../components/ReportsTable/ReportsTable"
-import { SettingsButton } from "../Project/Project.styled"
 import { Header, StyledContainer, Title } from "./Report.styled"
+import { SettingsButton } from "src/pages/project/Project.styled"
 
 export const ReportPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("")
