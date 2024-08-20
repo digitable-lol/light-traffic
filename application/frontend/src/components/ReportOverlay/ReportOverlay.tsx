@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@mui/material"
 
+import { GoalsTable } from "../GoalsTable"
 import {
   Backdrop,
   ButtonContainer,
@@ -30,13 +31,30 @@ interface ReportOverlayProps {
   onClose: () => void
 }
 
+interface Goal {
+  title: string
+  status: string
+  description: string
+}
+
 export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose }) => {
   const [tab, setTab] = useState<number>(0)
   const [onVacation, setOnVacation] = useState<string>("")
   const [reporterOnVacation, setReporterOnVacation] = useState<string>("")
+  const [goals, setGoals] = useState<Goal[]>([])
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue)
+  }
+
+  const handleAddGoal = () => {
+    setGoals([...goals, { title: "", status: "", description: "" }])
+  }
+
+  const handleGoalChange = (index: number, field: keyof Goal, value: string) => {
+    const updatedGoals = [...goals]
+    updatedGoals[index][field] = value
+    setGoals(updatedGoals)
   }
 
   return (
@@ -155,22 +173,14 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
 
                 {tab === 1 && (
                   <>
-                    <TextField
-                      fullWidth
-                      label="Цель 1"
-                      variant="outlined"
-                      placeholder="Введите цель 1"
-                      multiline
-                      rows={4}
-                    />
-                    <TextField
-                      fullWidth
-                      label="Цель 2"
-                      variant="outlined"
-                      placeholder="Введите цель 2"
-                      multiline
-                      rows={4}
-                    />
+                    <Grid item xs={12}>
+                      <Button variant="text" color="primary" onClick={handleAddGoal}>
+                        + Добавить цель
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <GoalsTable goals={goals} onGoalChange={handleGoalChange} />
+                    </Grid>
                   </>
                 )}
               </Grid>
