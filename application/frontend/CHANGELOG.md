@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/digitable-lol/light-traffic/compare/v1.2.1...v1.2.2) (2024-08-20)
+
+
+### Bug Fixes
+
+* get assets with using another paths in url ([#11](https://github.com/digitable-lol/light-traffic/issues/11)) ([d07e8d7](https://github.com/digitable-lol/light-traffic/commit/d07e8d747dcf6fbab01a5b16b66929d0654e9a36))
+
 ## [1.2.1](https://github.com/digitable-lol/light-traffic/compare/v1.2.0...v1.2.1) (2024-08-20)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "@digitable-lol/light-traffic",
   "private": true,
-  "version": "1.2.1",
+  "version": "1.2.2",
   "type": "module",
   "authors": [
     "Yaroslav Vdovin (Proza1k)",
