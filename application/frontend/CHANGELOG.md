@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/digitable-lol/light-traffic/compare/v1.2.2...v1.2.3) (2024-08-20)
+
+
+### Bug Fixes
+
+* routing with using environment basename ([#12](https://github.com/digitable-lol/light-traffic/issues/12)) ([dfa6c5f](https://github.com/digitable-lol/light-traffic/commit/dfa6c5fd2835653f2cc8ed61db02dd1f1e4f6e9b))
+
 ## [1.2.2](https://github.com/digitable-lol/light-traffic/compare/v1.2.1...v1.2.2) (2024-08-20)
 
 
