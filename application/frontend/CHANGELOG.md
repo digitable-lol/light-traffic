@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/digitable-lol/light-traffic/compare/v1.2.0...v1.2.1) (2024-08-20)
+
+
+### Bug Fixes
+
+* getting base url with demo page ([#10](https://github.com/digitable-lol/light-traffic/issues/10)) ([4f9849c](https://github.com/digitable-lol/light-traffic/commit/4f9849c8b57ce4c5c1dbb96a1e10133081ad2eba))
+
 # [1.2.0](https://github.com/digitable-lol/light-traffic/compare/v1.1.0...v1.2.0) (2024-08-20)
 
 
