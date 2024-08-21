@@ -8,9 +8,15 @@ export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     backgroundColor,
     height: theme.spacing(3),
     color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: 400,
+    fontSize: "13px",
+    alignItems: "center",
+    justifyContent: "center",
     display: "inline-flex",
     whiteSpace: "nowrap",
+    padding: "4px 12px 4px 8px",
+    gap: "4px",
+
     maxWidth: "fit-content",
     "&:hover, &:focus": {
       backgroundColor: emphasize(backgroundColor, 0.06),
