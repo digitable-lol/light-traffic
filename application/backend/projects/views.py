@@ -11,7 +11,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = Employee_Serializer
 
-    def get(self, request, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         data = list(Employee.objects.all().values())
         return Response(data,status=status.HTTP_200_OK)
     
@@ -39,7 +39,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     
     # Delete
 
-    def detele(self,request,*args,**kwargs):
+    def delete(self,request,*args,**kwargs):
         employe_data = Employee.objects.filter(id=kwargs['pk'])
         if employe_data:
             employe_data.delete()
@@ -52,7 +52,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
     serializer_class = Project_Serializer
 
     # list all
-    def get(self,request,*args,**kwarfs):
+    def list(self,request,*args,**kwarfs):
         projects = Project.objects.all()
         serializer = Project_Serializer(projects,many = True)
         return Response(serializer.data,status = status.HTTP_200_OK)
@@ -81,7 +81,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         
     # delete project by id
-    def detele(self,request,*args,**kwargs):
+    def delete(self,request,*args,**kwargs):
         project_data = Project.objects.filter(id=kwargs['pk'])
         if project_data:
             project_data.delete()
@@ -95,7 +95,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
     serializer_class = Report_Serializer
 
     # list of all reports of this project
-    def get(self,request,*args,**kwargs):
+    def list(self,request,*args,**kwargs):
         reports = Report.objects.all()
         serializer = Report_Serializer(reports,many = True)
         return Response(serializer.data,status = status.HTTP_200_OK)
@@ -109,7 +109,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
 
     # Create the Report with given data  
-    def post(self,request,*args,**kwargs):
+    def create(self,request,*args,**kwargs):
         data = {
             'report_name': request.data.get('report_name'),
             'report_start': request.data.get('report_start'),
@@ -132,7 +132,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
     # Delete report by ID
-    def detele(self,request,*args,**kwargs):
+    def delete(self,request,*args,**kwargs):
         report_data = Report.objects.filter(id=kwargs['pk'])
         if report_data:
             report_data.delete()
@@ -145,7 +145,7 @@ class Objective_List_API_View(viewsets.ModelViewSet):
     queryset = Objective.objects.all()
     serializer_class = Objective_Serializer
     # list of all objectives of this report
-    def get(self,request,*args,**kards):
+    def list(self,request,*args,**kards):
         objectives = Objective.objects.all()
         serializer = Objective_Serializer(objectives,many = True)
         return Response(serializer.data,status=status.HTTP_200_OK)
@@ -173,7 +173,7 @@ class Objective_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
     
     # Delete report by ID
-    def detele(self,request,*args,**kwargs):
+    def delete(self,request,*args,**kwargs):
         objective_data = Report.objects.filter(id=kwargs['pk'])
         if objective_data:
             objective_data.delete()
