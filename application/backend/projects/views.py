@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
-
+import logging
 from .models import Employee, Objective, Project, Report
 from .serializers import Employee_Serializer, Objective_Serializer, Project_Serializer, Report_Serializer
 # Create your views here.
@@ -11,6 +11,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     serializer_class = Employee_Serializer
 
     def list(self, request, *args, **kwargs):
+        logging.info(f"{request} - list all objects")
         data = list(Employee.objects.all().values())
         return Response(data,status=status.HTTP_200_OK)
     
@@ -52,6 +53,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
 
     # list all
     def list(self,request,*args,**kwarfs):
+        logging.info(f"{request} - list all objects")
         projects = Project.objects.all()
         serializer = Project_Serializer(projects,many = True)
         return Response(serializer.data,status = status.HTTP_200_OK)
@@ -95,6 +97,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
 
     # list of all reports of this project
     def list(self,request,*args,**kwargs):
+        logging.info(f"{request} - list all objects")
         reports = Report.objects.all()
         serializer = Report_Serializer(reports,many = True)
         return Response(serializer.data,status = status.HTTP_200_OK)
@@ -145,6 +148,7 @@ class Objective_List_API_View(viewsets.ModelViewSet):
     serializer_class = Objective_Serializer
     # list of all objectives of this report
     def list(self,request,*args,**kards):
+        logging.info(f"{request} - list all objects")
         objectives = Objective.objects.all()
         serializer = Objective_Serializer(objectives,many = True)
         return Response(serializer.data,status=status.HTTP_200_OK)
