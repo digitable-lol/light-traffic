@@ -1,23 +1,23 @@
-import styled from "styled-components"
+import Chip from "@mui/material/Chip"
+import { emphasize, styled } from "@mui/material/styles"
 
-import { Link } from "react-router-dom"
-
-export const StyledButton = styled(Link)`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.08);
-  gap: 4px;
-  border-radius: 50px;
-  padding: 4px 12px 4px 8px;
-  text-decoration: none;
-  color: ${(props) => props.theme.palette.text.primary};
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.12);
-    color: ${(props) => props.theme.palette.text.secondary};
+export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor =
+    theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]
+  return {
+    backgroundColor,
+    height: theme.spacing(3),
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightRegular,
+    display: "inline-flex",
+    whiteSpace: "nowrap",
+    maxWidth: "fit-content",
+    "&:hover, &:focus": {
+      backgroundColor: emphasize(backgroundColor, 0.06),
+    },
+    "&:active": {
+      boxShadow: theme.shadows[1],
+      backgroundColor: emphasize(backgroundColor, 0.12),
+    },
   }
-`
+}) as typeof Chip
