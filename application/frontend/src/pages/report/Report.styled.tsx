@@ -34,8 +34,17 @@ export const TitleSection = styled.div`
   gap: 16px;
   flex: 1;
 `
+
 export const StyledTitle = styled.div`
   font-size: 34px;
   font-weight: 600;
   color: rgba(29, 27, 32, 1);
+`
+
+export const SearchViewContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
 `

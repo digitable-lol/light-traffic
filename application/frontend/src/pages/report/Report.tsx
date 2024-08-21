@@ -12,7 +12,13 @@ import ReportsTable from "src/components/ReportsTable/ReportsTable"
 import { SearchBar } from "src/components/SearchBar"
 import { ViewModeToggle } from "src/components/ViewModeToggle"
 
-import { Header, StyledContainer, StyledTitle, Title, TitleSection } from "./Report.styled"
+import {
+  Header,
+  SearchViewContainer,
+  StyledContainer,
+  StyledTitle,
+  TitleSection,
+} from "./Report.styled"
 
 const stageColors = {
   Initial: "rgba(0, 122, 255, 1)",
@@ -112,7 +118,6 @@ export const ReportPage: React.FC = () => {
         /<NavButton to="/">Проект название проекта</NavButton>
         <Header container>
           <Grid item>
-            <> </>
             <TitleSection>
               <img src={stack} alt="Stack" style={{ width: 40, height: 40 }} />
               <StyledTitle>Список проектов</StyledTitle>
@@ -122,12 +127,14 @@ export const ReportPage: React.FC = () => {
             <CreateReportButton onClick={handleCreateReport} />
           </Grid>
         </Header>
-        <SearchBar
-          searchQuery={searchQuery}
-          onSearchChange={handleSearchChange}
-          onClearSearch={clearSearch}
-        />
-        <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />{" "}
+        <SearchViewContainer>
+          <SearchBar
+            searchQuery={searchQuery}
+            onSearchChange={handleSearchChange}
+            onClearSearch={clearSearch}
+          />
+          <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />
+        </SearchViewContainer>
         {viewMode === "list" ? (
           <ReportsTable reports={reports} />
         ) : (
