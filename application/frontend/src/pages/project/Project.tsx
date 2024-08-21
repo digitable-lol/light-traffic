@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home"
 import SearchIcon from "@mui/icons-material/Search"
 
 import settings from "src/assets/settings.svg"
-import { CreateProjectButton } from "src/components/CreateProjectButton"
+// import { CreateProjectButton } from "src/components/CreateProjectButton"
 import { NavButton } from "src/components/NavButton"
 import { ProjectCard } from "src/components/ProjectCard"
 import { SearchBar } from "src/components/SearchBar"
