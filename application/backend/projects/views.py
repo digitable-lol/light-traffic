@@ -18,12 +18,20 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     # read one by ID
 
     def retrieve(self, request, *args, **kwargs):
-        data = Employee.objects.filter(id = kwargs['pk'])[0]
-        serializer = Employee_Serializer(data)
-        if data:
+        
+        logging.info(f'{request} - id = {kwargs["pk"]}')
+        try:
+            data = Employee.objects.filter(id = kwargs['pk'])[0]
+            serializer = Employee_Serializer(data)
+            logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
-        return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
-    
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
     #Create
 
     def create(self,request,*args,**kwargs):
@@ -60,11 +68,18 @@ class Project_List_API_View(viewsets.ModelViewSet):
     
     # read one
     def retrieve(self, request, *args, **kwargs):
-        data = Project.objects.filter(id = kwargs['pk'])[0]
-        serializer = Project_Serializer(data)
-        if data:
+        logging.info(f'{request} - id = {kwargs["pk"]}')
+        try:
+            data = Project.objects.filter(id = kwargs['pk'])[0]
+            serializer = Project_Serializer(data)
+            logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
-        return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
     
     # create project
     def create(self,request,*args,**kwargs):
@@ -104,11 +119,18 @@ class Report_List_API_View(viewsets.ModelViewSet):
     
     # read report by ID
     def retrieve(self, request, *args, **kwargs):
-        data = Report.objects.filter(id = kwargs['pk'])[0]
-        serializer = Report_Serializer(data)
-        if data:
+        logging.info(f'{request} - id = {kwargs["pk"]}')
+        try:
+            data = Report.objects.filter(id = kwargs['pk'])[0]
+            serializer = Report_Serializer(data)
+            logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
-        return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     # Create the Report with given data  
     def create(self,request,*args,**kwargs):
@@ -169,12 +191,18 @@ class Objective_List_API_View(viewsets.ModelViewSet):
     
     #read objective by id
     def retrieve(self, request, *args, **kwargs):
-        data = Objective.objects.filter(id = kwargs['pk'])[0]
-        serializer = Objective_Serializer(data)
-        if data:
+        logging.info(f'{request} - id = {kwargs["pk"]}')
+        try:
+            data = Objective.objects.filter(id = kwargs['pk'])[0]
+            serializer = Objective_Serializer(data)
+            logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
-        return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
-    
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
     # Delete report by ID
     def destroy(self,request,*args,**kwargs):
         objective_data = Report.objects.filter(id=kwargs['pk'])
