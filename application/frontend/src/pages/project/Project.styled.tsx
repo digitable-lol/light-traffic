@@ -9,11 +9,16 @@ export const Container = styled.div`
   gap: 16px;
 `
 
+export const NavButtonContainer = styled.div`
+  margin-top: 39px;
+`
+
 export const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  margin-top: 49px;
 `
 
 export const TitleSection = styled.div`
@@ -26,13 +31,17 @@ export const TitleSection = styled.div`
 export const CreateProjectContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 16px;
+`
+
+export const SearchBarContainer = styled.div`
+  margin-top: 37px;
 `
 
 export const ProjectList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 31px;
 `
 
 export const StyledTitle = styled.div`
