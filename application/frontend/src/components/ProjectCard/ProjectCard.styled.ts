@@ -8,10 +8,7 @@ export const CardContainer = styled.div`
   height: 80px;
   border-radius: 12px;
   background-color: #ffffff;
-  box-shadow:
-    0px 1px 5px 0px rgba(0, 0, 0, 0.12),
-    0px 2px 3px 0px rgba(0, 0, 0, 0.14),
-    0px 3px 5px -2px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(202, 196, 208, 1);
   cursor: pointer;
 
   &:hover {
