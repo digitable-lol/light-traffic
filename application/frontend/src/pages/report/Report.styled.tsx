@@ -27,3 +27,15 @@ export const HeaderRightContainer = styled.div`
   display: flex;
   align-items: center;
 `
+
+export const TitleSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+`
+export const StyledTitle = styled.div`
+  font-size: 34px;
+  font-weight: 600;
+  color: rgba(29, 27, 32, 1);
+`
