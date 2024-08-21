@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
-import { AccountCircle, Message, MoreVert, Notifications } from "@mui/icons-material"
+import { AccountCircleOutlined, MoreVertOutlined, NotificationsOutlined } from "@mui/icons-material"
 import { Button, IconButton, Switch, Tooltip, Typography } from "@mui/material"
 
 import { UserController } from "src/api/controllers/UserController"
@@ -66,24 +66,40 @@ export const Header: React.FC = () => {
 
       <RightSection>
         <IconButtons>
-          <Tooltip title={t("messages")}>
-            <IconButton>
-              <Message />
-            </IconButton>
-          </Tooltip>
           <Tooltip title={t("notifications")}>
-            <IconButton>
-              <Notifications />
+            <IconButton
+              sx={{
+                backgroundColor: "rgba(238, 238, 238, 1)",
+                borderRadius: "6px",
+                width: "28px",
+                height: "28px",
+              }}
+            >
+              <NotificationsOutlined />
             </IconButton>
           </Tooltip>
           <Tooltip title={t("profile")}>
-            <IconButton>
-              <AccountCircle />
+            <IconButton
+              sx={{
+                backgroundColor: "rgba(238, 238, 238, 1)",
+                borderRadius: "6px",
+                width: "28px",
+                height: "28px",
+              }}
+            >
+              <AccountCircleOutlined />
             </IconButton>
           </Tooltip>
           <Tooltip title={t("more")}>
-            <IconButton>
-              <MoreVert />
+            <IconButton
+              sx={{
+                backgroundColor: "rgba(238, 238, 238, 1)",
+                borderRadius: "6px",
+                width: "28px",
+                height: "28px",
+              }}
+            >
+              <MoreVertOutlined />
             </IconButton>
           </Tooltip>
         </IconButtons>
