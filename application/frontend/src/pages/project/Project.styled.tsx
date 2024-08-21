@@ -1,7 +1,5 @@
 import styled from "styled-components"
 
-import { Button } from "@mui/material"
-
 export const Container = styled.div`
   padding: 16px;
   padding-left: 48px;
@@ -25,24 +23,6 @@ export const TitleSection = styled.div`
   flex: 1;
 `
 
-export const SettingsButton = styled(Button)`
-  background-color: #007dff;
-  color: #ffffff;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  min-width: 0;
-  padding: 0;
-
-  &:hover {
-    background-color: #005bb5;
-  }
-
-  svg {
-    font-size: 24px;
-  }
-`
-
 export const CreateProjectContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -53,4 +33,10 @@ export const ProjectList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+`
+
+export const StyledTitle = styled.div`
+  font-size: 34px;
+  font-weight: 600;
+  color: rgba(29, 27, 32, 1);
 `
