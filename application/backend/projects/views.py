@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
-from django.db.models import Max
 
 from .models import Employee, Objective, Project, Report
 from .serializers import Employee_Serializer, Objective_Serializer, Project_Serializer, Report_Serializer
