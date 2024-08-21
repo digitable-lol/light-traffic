@@ -39,7 +39,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     
     # Delete
 
-    def delete(self,request,*args,**kwargs):
+    def destroy(self,request,*args,**kwargs):
         employe_data = Employee.objects.filter(id=kwargs['pk'])
         if employe_data:
             employe_data.delete()
@@ -82,7 +82,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         
     # delete project by id
-    def delete(self,request,*args,**kwargs):
+    def destroy(self,request,*args,**kwargs):
         project_data = Project.objects.filter(id=kwargs['pk'])
         if project_data:
             project_data.delete()
@@ -134,7 +134,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
     # Delete report by ID
-    def delete(self,request,*args,**kwargs):
+    def destroy(self,request,*args,**kwargs):
         report_data = Report.objects.filter(id=kwargs['pk'])
         if report_data:
             report_data.delete()
@@ -176,7 +176,7 @@ class Objective_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
     
     # Delete report by ID
-    def delete(self,request,*args,**kwargs):
+    def destroy(self,request,*args,**kwargs):
         objective_data = Report.objects.filter(id=kwargs['pk'])
         if objective_data:
             objective_data.delete()
