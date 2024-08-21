@@ -11,9 +11,10 @@ import { SearchBar } from "src/components/SearchBar"
 
 import {
   Container,
-  CreateProjectContainer,
   HeaderSection,
+  NavButtonContainer,
   ProjectList,
+  SearchBarContainer,
   StyledTitle,
   TitleSection,
 } from "./Project.styled"
@@ -40,27 +41,30 @@ export const ProjectPage: React.FC = () => {
 
   return (
     <Container>
-      <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
-        Список проектов
-      </NavButton>
+      <NavButtonContainer>
+        <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
+          Список проектов
+        </NavButton>
+      </NavButtonContainer>
       <HeaderSection>
         <TitleSection>
           <img src={settings} alt="Settings" style={{ width: 40, height: 40 }} />
           <StyledTitle>Список проектов</StyledTitle>
         </TitleSection>
-
         {/* <CreateProjectContainer>
           <CreateProjectButton onClick={() => console.log("Create Project")} />
         </CreateProjectContainer> */}
       </HeaderSection>
-      <SearchBar
-        searchQuery={searchQuery}
-        onSearchChange={handleSearchChange}
-        onClearSearch={handleClearSearch}
-        variant="outlined"
-        startIcon={<SearchIcon />}
-        placeholder="Search"
-      />
+      <SearchBarContainer>
+        <SearchBar
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+          onClearSearch={handleClearSearch}
+          variant="outlined"
+          startIcon={<SearchIcon />}
+          placeholder="Search"
+        />
+      </SearchBarContainer>
       <ProjectList>
         {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
