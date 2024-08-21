@@ -1,16 +1,14 @@
 import React from "react"
 
 import ClearIcon from "@mui/icons-material/Clear"
-import ViewListIcon from "@mui/icons-material/ViewList"
-import ViewModuleIcon from "@mui/icons-material/ViewModule"
 import { Grid, InputAdornment } from "@mui/material"
 
-import { ClearButton, SearchContainer, SearchInput, ViewToggleButton } from "./SearchBar.styled"
+import { ClearButton, SearchContainer, SearchInput } from "./SearchBar.styled"
 
 interface SearchBarProps {
   searchQuery: string
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  viewMode: "list" | "grid" | "timeline"
+  viewMode: "list" | "grid" | "timeline" | string
   onToggleViewMode: () => void
   onClearSearch: () => void
 }
@@ -18,8 +16,6 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({
   searchQuery,
   onSearchChange,
-  viewMode,
-  onToggleViewMode,
   onClearSearch,
 }) => {
   return (
@@ -40,11 +36,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             ) : null,
           }}
         />
-      </Grid>
-      <Grid item xs={12} sm={6} container justifyContent="flex-end">
-        <ViewToggleButton onClick={onToggleViewMode}>
-          {viewMode === "list" ? <ViewModuleIcon /> : <ViewListIcon />}
-        </ViewToggleButton>
       </Grid>
     </SearchContainer>
   )
