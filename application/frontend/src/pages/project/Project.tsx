@@ -1,6 +1,7 @@
 import React from "react"
 
 import { Settings } from "@mui/icons-material"
+import HomeIcon from "@mui/icons-material/Home"
 import { Typography } from "@mui/material"
 
 import { CreateProjectButton } from "src/components/CreateProjectButton"
@@ -24,7 +25,9 @@ const projects = [
 export const ProjectPage: React.FC = () => {
   return (
     <Container>
-      <NavButton to="/">Home</NavButton>
+      <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
+        Home
+      </NavButton>
       <HeaderSection>
         <TitleSection>
           <SettingsButton>

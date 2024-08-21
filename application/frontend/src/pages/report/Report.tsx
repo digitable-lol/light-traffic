@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 
 import { Settings } from "@mui/icons-material"
+import HomeIcon from "@mui/icons-material/Home"
 import { Container, Grid } from "@mui/material"
 
 import CreateReportButton from "src/components/CreateReportButton/CreateReportButton"
@@ -117,8 +118,10 @@ export const ReportPage: React.FC = () => {
   return (
     <StyledContainer>
       <Container maxWidth="lg">
-        <NavButton to="/">Home</NavButton>/
-        <NavButton to="/projects">Проект название проекта</NavButton>
+        <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
+          Home
+        </NavButton>
+        /<NavButton to="/projects">Проект название проекта</NavButton>
         <Header container>
           <Grid item>
             <SettingsButton>
