@@ -40,8 +40,8 @@ export const ProjectPage: React.FC = () => {
 
   return (
     <Container>
-      <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
-        Home
+      <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
+        Список проектов
       </NavButton>
       <HeaderSection>
         <TitleSection>
@@ -49,9 +49,9 @@ export const ProjectPage: React.FC = () => {
           <StyledTitle>Список проектов</StyledTitle>
         </TitleSection>
 
-        <CreateProjectContainer>
+        {/* <CreateProjectContainer>
           <CreateProjectButton onClick={() => console.log("Create Project")} />
-        </CreateProjectContainer>
+        </CreateProjectContainer> */}
       </HeaderSection>
       <SearchBar
         searchQuery={searchQuery}
