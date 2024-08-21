@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
@@ -34,15 +35,21 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     #Create
 
     def create(self,request,*args,**kwargs):
+        logging.info(f"{request},{request.data}")
         data = {
             'first_name': request.data.get('first_name'),
             'last_name': request.data.get('last_name')
         }
-        serializer = Employee_Serializer(data = data)
-        if serializer.is_valid():
+        try:
+            serializer = Employee_Serializer(data = data)
+            serializer.is_valid()
+            logging.info('data is valid')
             serializer.save()
+            logging.info('data is saved')
             return Response(serializer.data,status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except ValidationError:
+            logging.exception('Data is not valid')
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
     # Delete
 
@@ -89,6 +96,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
     
     # create project
     def create(self,request,*args,**kwargs):
+        logging.info(f"{request},{request.data}")
         data = {
             'project_name': request.data.get('project_name'),
             'project_discription': request.data.get('project_discription'),
@@ -97,10 +105,16 @@ class Project_List_API_View(viewsets.ModelViewSet):
             'employee': request.data.get('employee')
         }
         serializer = Project_Serializer(data = data)
-        if serializer.is_valid():
+        try:
+            serializer = Employee_Serializer(data = data)
+            serializer.is_valid()
+            logging.info('data is valid')
             serializer.save()
+            logging.info('data is saved')
             return Response(serializer.data,status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except ValidationError:
+            logging.exception('Data is not valid')
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         
     # delete project by id
     def destroy(self,request,*args,**kwargs):
@@ -147,6 +161,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
 
     # Create the Report with given data  
     def create(self,request,*args,**kwargs):
+        logging.info(f"{request},{request.data}")
         data = {
             'report_name': request.data.get('report_name'),
             'report_start': request.data.get('report_start'),
@@ -163,10 +178,16 @@ class Report_List_API_View(viewsets.ModelViewSet):
 
         serializer = Report_Serializer(data=data)
 
-        if serializer.is_valid():
+        try:
+            serializer = Employee_Serializer(data = data)
+            serializer.is_valid()
+            logging.info('data is valid')
             serializer.save()
+            logging.info('data is saved')
             return Response(serializer.data,status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except ValidationError:
+            logging.exception('Data is not valid')
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
     # Delete report by ID
     def destroy(self,request,*args,**kwargs):
@@ -196,18 +217,25 @@ class Objective_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.data,status=status.HTTP_200_OK)
     
     # Create the Objective for this report
-    def create(self,requset,*args,**kwargs):
+    def create(self,request,*args,**kwargs):
+        logging.info(f"{request},{request.data}")
         data = {
-            'objective_id': requset.data.get('objective_id'),
-            'objective_name': requset.data.get('objective_name'),
-            'objective_color': requset.data.get('objective_color'),
-            'related_report': requset.data.get('related_report'),
+            'objective_id': request.data.get('objective_id'),
+            'objective_name': request.data.get('objective_name'),
+            'objective_color': request.data.get('objective_color'),
+            'related_report': request.data.get('related_report'),
         }
         serializer = Objective_Serializer(data = data)
-        if serializer.is_valid():
+        try:
+            serializer = Employee_Serializer(data = data)
+            serializer.is_valid()
+            logging.info('data is valid')
             serializer.save()
+            logging.info('data is saved')
             return Response(serializer.data,status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except ValidationError:
+            logging.exception('Data is not valid')
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
     #read objective by id
     def retrieve(self, request, *args, **kwargs):
