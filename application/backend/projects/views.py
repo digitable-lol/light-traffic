@@ -18,8 +18,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     # read one by ID
 
     def retrieve(self, request, *args, **kwargs):
-        
-        logging.info(f'{request} - id = {kwargs["pk"]}')
+        logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
             data = Employee.objects.filter(id = kwargs['pk'])[0]
             serializer = Employee_Serializer(data)
@@ -48,12 +47,19 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     # Delete
 
     def destroy(self,request,*args,**kwargs):
-        employe_data = Employee.objects.filter(id=kwargs['pk'])
-        if employe_data:
-            employe_data.delete()
-            return Response({"messege": "Employer was deleted"}, status = status.HTTP_201_CREATED)
-        else:
-            return Response(status= status.HTTP_404_NOT_FOUND)
+        logging.info(f'{request},delete - id = {kwargs["pk"]}')
+        try:
+            data = Employee.objects.filter(id = kwargs['pk'])[0]
+            logging.info('Object found')
+            data.delete()
+            logging.info('Object deleted')
+            return Response(status = status.HTTP_201_CREATED)
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class Project_List_API_View(viewsets.ModelViewSet):
     queryset = Project.objects.all()
@@ -68,7 +74,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
     
     # read one
     def retrieve(self, request, *args, **kwargs):
-        logging.info(f'{request} - id = {kwargs["pk"]}')
+        logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
             data = Project.objects.filter(id = kwargs['pk'])[0]
             serializer = Project_Serializer(data)
@@ -98,12 +104,19 @@ class Project_List_API_View(viewsets.ModelViewSet):
         
     # delete project by id
     def destroy(self,request,*args,**kwargs):
-        project_data = Project.objects.filter(id=kwargs['pk'])
-        if project_data:
-            project_data.delete()
-            return Response({"messege": "Project was deleted"}, status = status.HTTP_201_CREATED)
-        else:
-            return Response(status= status.HTTP_404_NOT_FOUND)
+        logging.info(f'{request},delete - id = {kwargs["pk"]}')
+        try:
+            data = Project.objects.filter(id = kwargs['pk'])[0]
+            logging.info('Object found')
+            data.delete()
+            logging.info('Object deleted')
+            return Response(status = status.HTTP_201_CREATED)
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 class Report_List_API_View(viewsets.ModelViewSet):
@@ -119,7 +132,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
     
     # read report by ID
     def retrieve(self, request, *args, **kwargs):
-        logging.info(f'{request} - id = {kwargs["pk"]}')
+        logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
             data = Report.objects.filter(id = kwargs['pk'])[0]
             serializer = Report_Serializer(data)
@@ -157,12 +170,19 @@ class Report_List_API_View(viewsets.ModelViewSet):
 
     # Delete report by ID
     def destroy(self,request,*args,**kwargs):
-        report_data = Report.objects.filter(id=kwargs['pk'])
-        if report_data:
-            report_data.delete()
-            return Response({"messege": "Report was deleted"}, status = status.HTTP_201_CREATED)
-        else:
-            return Response(status= status.HTTP_404_NOT_FOUND)
+        logging.info(f'{request},delete - id = {kwargs["pk"]}')
+        try:
+            data = Report.objects.filter(id = kwargs['pk'])[0]
+            logging.info('Object found')
+            data.delete()
+            logging.info('Object deleted')
+            return Response(status = status.HTTP_201_CREATED)
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
         
 class Objective_List_API_View(viewsets.ModelViewSet):
     
@@ -191,7 +211,7 @@ class Objective_List_API_View(viewsets.ModelViewSet):
     
     #read objective by id
     def retrieve(self, request, *args, **kwargs):
-        logging.info(f'{request} - id = {kwargs["pk"]}')
+        logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
             data = Objective.objects.filter(id = kwargs['pk'])[0]
             serializer = Objective_Serializer(data)
@@ -205,10 +225,17 @@ class Objective_List_API_View(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
     # Delete report by ID
     def destroy(self,request,*args,**kwargs):
-        objective_data = Report.objects.filter(id=kwargs['pk'])
-        if objective_data:
-            objective_data.delete()
-            return Response({"messege": "Objective was deleted"}, status = status.HTTP_201_CREATED)
-        else:
-            return Response(status= status.HTTP_404_NOT_FOUND)
+        logging.info(f'{request},delete - id = {kwargs["pk"]}')
+        try:
+            data = Objective.objects.filter(id = kwargs['pk'])[0]
+            logging.info('Object found')
+            data.delete()
+            logging.info('Object deleted')
+            return Response(status = status.HTTP_201_CREATED)
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            logging.exception("Index out of range")
+            return Response(status=status.HTTP_404_NOT_FOUND)
         
