@@ -1,6 +1,6 @@
 import React from "react"
 
-import { ArrowForwardIos } from "@mui/icons-material"
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 
 import { ArrowIcon, Avatar, CardContainer, ProjectName } from "./ProjectCard.styled"
 
@@ -18,7 +18,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       <Avatar src={project.avatar} alt={project.name} />
       <ProjectName>{project.name}</ProjectName>
       <ArrowIcon>
-        <ArrowForwardIos />
+        <ArrowForwardIcon />
       </ArrowIcon>
     </CardContainer>
   )
