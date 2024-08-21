@@ -17,7 +17,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     
     # read one by ID
 
-    def read(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         data = Employee.objects.filter(id = kwargs['pk'])[0]
         serializer = Employee_Serializer(data)
         if data:
@@ -59,7 +59,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.data,status = status.HTTP_200_OK)
     
     # read one
-    def read(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         data = Project.objects.filter(id = kwargs['pk'])[0]
         serializer = Project_Serializer(data)
         if data:
@@ -103,7 +103,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.data,status = status.HTTP_200_OK)
     
     # read report by ID
-    def read(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         data = Report.objects.filter(id = kwargs['pk'])[0]
         serializer = Report_Serializer(data)
         if data:
@@ -168,7 +168,7 @@ class Objective_List_API_View(viewsets.ModelViewSet):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
     #read objective by id
-    def read(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         data = Objective.objects.filter(id = kwargs['pk'])[0]
         serializer = Objective_Serializer(data)
         if data:
