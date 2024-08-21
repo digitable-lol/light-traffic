@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import HomeIcon from "@mui/icons-material/Home"
 import { Container, Grid } from "@mui/material"
 
+import stack from "src/assets/stack.svg"
 import CreateReportButton from "src/components/CreateReportButton/CreateReportButton"
 import { NavButton } from "src/components/NavButton"
 import ReportOverlay from "src/components/ReportOverlay/ReportOverlay"
@@ -11,7 +12,7 @@ import ReportsTable from "src/components/ReportsTable/ReportsTable"
 import { SearchBar } from "src/components/SearchBar"
 import { ViewModeToggle } from "src/components/ViewModeToggle"
 
-import { Header, StyledContainer, Title } from "./Report.styled"
+import { Header, StyledContainer, StyledTitle, Title, TitleSection } from "./Report.styled"
 
 const stageColors = {
   Initial: "rgba(0, 122, 255, 1)",
@@ -117,14 +118,17 @@ export const ReportPage: React.FC = () => {
   return (
     <StyledContainer>
       <Container maxWidth="lg">
-        <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
+        <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
           Home
         </NavButton>
-        /<NavButton to="/projects">Проект название проекта</NavButton>
+        /<NavButton to="/">Проект название проекта</NavButton>
         <Header container>
           <Grid item>
             <> </>
-            <Title variant="h5">Reports</Title>
+            <TitleSection>
+              <img src={stack} alt="Stack" style={{ width: 40, height: 40 }} />
+              <StyledTitle>Список проектов</StyledTitle>
+            </TitleSection>
           </Grid>
           <Grid item xs={12} sm={6} container justifyContent="flex-end">
             <CreateReportButton onClick={handleCreateReport} />
