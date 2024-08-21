@@ -2,8 +2,8 @@ import Chip from "@mui/material/Chip"
 import { emphasize, styled } from "@mui/material/styles"
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-  const backgroundColor =
-    theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]
+  const backgroundColor = "rgba(0, 0, 0, 0.08)"
+
   return {
     backgroundColor,
     height: theme.spacing(3),
