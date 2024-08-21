@@ -9,6 +9,7 @@ import ReportOverlay from "src/components/ReportOverlay/ReportOverlay"
 import ReportTimeline from "src/components/ReportTimeline/ReportTimeline"
 import ReportsTable from "src/components/ReportsTable/ReportsTable"
 import { SearchBar } from "src/components/SearchBar"
+import { ViewModeToggle } from "src/components/ViewModeToggle"
 
 import { Header, StyledContainer, Title } from "./Report.styled"
 
@@ -132,10 +133,9 @@ export const ReportPage: React.FC = () => {
         <SearchBar
           searchQuery={searchQuery}
           onSearchChange={handleSearchChange}
-          viewMode={viewMode}
-          onToggleViewMode={toggleViewMode}
           onClearSearch={clearSearch}
         />
+        <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />{" "}
         {viewMode === "list" ? (
           <ReportsTable reports={reports} />
         ) : (
