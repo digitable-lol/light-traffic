@@ -38,7 +38,7 @@ export const Theme: React.FC<ThemeProps> = ({ children }) => {
         contrastText: "#fff",
       },
       background: {
-        default: currentTheme === ThemeEnum.Light ? "#ffffff" : "#121212",
+        default: currentTheme === ThemeEnum.Light ? "rgba(250, 250, 250, 1)" : "#121212",
         paper: currentTheme === ThemeEnum.Light ? "#ffffff" : "#1e1e1e",
       },
       text: {
