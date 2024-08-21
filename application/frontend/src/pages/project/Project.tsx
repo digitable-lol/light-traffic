@@ -1,19 +1,18 @@
 import React from "react"
 
-import { Settings } from "@mui/icons-material"
 import HomeIcon from "@mui/icons-material/Home"
-import { Typography } from "@mui/material"
 
+import settings from "src/assets/settings.svg"
 import { CreateProjectButton } from "src/components/CreateProjectButton"
 import { NavButton } from "src/components/NavButton"
 import { ProjectCard } from "src/components/ProjectCard"
 
-import { SettingsButton } from "./Project.styled"
 import {
   Container,
   CreateProjectContainer,
   HeaderSection,
   ProjectList,
+  StyledTitle,
   TitleSection,
 } from "./Project.styled"
 
@@ -30,10 +29,8 @@ export const ProjectPage: React.FC = () => {
       </NavButton>
       <HeaderSection>
         <TitleSection>
-          <SettingsButton>
-            <Settings />
-          </SettingsButton>
-          <Typography variant="h5">Список проектов</Typography>
+          <img src={settings} alt="Settings" style={{ width: 40, height: 40 }} />
+          <StyledTitle>Список проектов</StyledTitle>
         </TitleSection>
 
         <CreateProjectContainer>

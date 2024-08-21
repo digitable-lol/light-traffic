@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 
-import { Settings } from "@mui/icons-material"
 import HomeIcon from "@mui/icons-material/Home"
 import { Container, Grid } from "@mui/material"
 
@@ -11,7 +10,6 @@ import ReportTimeline from "src/components/ReportTimeline/ReportTimeline"
 import ReportsTable from "src/components/ReportsTable/ReportsTable"
 import { SearchBar } from "src/components/SearchBar"
 
-import { SettingsButton } from "../Project/Project.styled"
 import { Header, StyledContainer, Title } from "./Report.styled"
 
 const stageColors = {
@@ -124,9 +122,7 @@ export const ReportPage: React.FC = () => {
         /<NavButton to="/projects">Проект название проекта</NavButton>
         <Header container>
           <Grid item>
-            <SettingsButton>
-              <Settings />
-            </SettingsButton>
+            <> </>
             <Title variant="h5">Reports</Title>
           </Grid>
           <Grid item xs={12} sm={6} container justifyContent="flex-end">
