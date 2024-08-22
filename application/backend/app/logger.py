@@ -10,7 +10,7 @@ def setupLoggerConfig(fileName):
         level=logging.INFO,
         format=format,
         handlers=[
-            logging.FileHandler(os.getenv("LOG_FILE_PATH") + "logs/" + fileName),
+            logging.FileHandler(os.getenv("LOG_FILE_PATH") + fileName),
             logging.StreamHandler(),
         ],
     )
