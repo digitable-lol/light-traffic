@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 import logging
+from rest_framework.decorators import action
 from .models import Employee, Objective, Project, Report
 from .serializers import Employee_Serializer, Objective_Serializer, Project_Serializer, Report_Serializer
 # Create your views here.
@@ -67,6 +68,32 @@ class Employes_List_API_View(viewsets.ModelViewSet):
         except IndexError:
             logging.exception("Index out of range")
             return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    @action(detail=False, methods=['post'])
+    def search(self,request,*args,**kwargs):
+        logging.info(f'{request}:{request.data}')
+        data = Employee.objects.all()
+        if request.data.get('id'):
+            search_by_id = Employee.objects.filter(id = request.data.get('id'))
+            data = data.intersection(search_by_id)
+            print(data)
+        if request.data.get('first_name'):
+            search_by_first_name = Employee.objects.filter(first_name = request.data.get('first_name'))
+            data = data.intersection(search_by_first_name)
+            print(data)
+        if request.data.get('last_name'):
+            search_by_last_name = Employee.objects.filter(first_name = request.data.get('last_name'))
+            data = data.intersection(search_by_last_name)
+            print(data)
+        serializer = Employee_Serializer(data = data, many = True)
+        serializer.is_valid()
+        if serializer.data.__len__() != 0:
+            logging.info(f'Objects found {serializer.data}')
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        else:
+            logging.info('Objects not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
 
 class Project_List_API_View(viewsets.ModelViewSet):
     queryset = Project.objects.all()
