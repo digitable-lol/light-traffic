@@ -18,16 +18,22 @@ export const AuthorAvatar = styled(Avatar)`
 export const StyledTableCell = styled(TableCell)`
   display: flex;
   align-items: center;
-  border-bottom: none;
+  padding: 16px;
 `
 
 export const StyledTableRow = styled(TableRow)`
-  &:first-child ${StyledTableCell} {
-    border-bottom: 1px solid rgba(224, 224, 224, 1);
+  &:not(:first-of-type) ${StyledTableCell} {
+    border-top: 1px solid rgba(224, 224, 224, 1);
   }
 
-  &:not(:first-child) ${StyledTableCell} {
+  &:last-child ${StyledTableCell} {
     border-bottom: none;
+  }
+`
+
+export const TableHeaderRow = styled(TableRow)`
+  ${StyledTableCell} {
+    border-bottom: 2px solid rgba(224, 224, 224, 1);
   }
 `
 
@@ -45,4 +51,5 @@ export const DateText = styled(Typography).attrs({
 
 export const CustomTableContainer = styled(TableContainer)`
   box-shadow: none;
+  border: none;
 `
