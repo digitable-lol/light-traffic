@@ -13,6 +13,7 @@ import {
   ProjectName,
   StyledTableCell,
   StyledTableRow,
+  TableHeaderRow,
 } from "./ReportsTable.styled"
 
 export interface Report {
@@ -34,13 +35,13 @@ export const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
     <CustomTableContainer>
       <Table>
         <TableHead>
-          <StyledTableRow>
+          <TableHeaderRow>
             <StyledTableCell>Name</StyledTableCell>
             <StyledTableCell>Status</StyledTableCell>
             <StyledTableCell>Author</StyledTableCell>
             <StyledTableCell>Start Date</StyledTableCell>
             <StyledTableCell>End Date</StyledTableCell>
-          </StyledTableRow>
+          </TableHeaderRow>
         </TableHead>
         <TableBody>
           {reports.map((report) => (
