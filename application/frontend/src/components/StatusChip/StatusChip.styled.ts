@@ -7,38 +7,53 @@ interface StatusChipProps {
 }
 
 export const StatusChip = styled(Chip)<StatusChipProps>`
-  background-color: transparent !important;
-  border: 2px solid
+  background-color: ${({ status }) =>
+    status === "Success"
+      ? "rgba(46, 125, 50, 0.04)"
+      : status === "Error"
+        ? "rgba(211, 47, 47, 0.04)"
+        : status === "Warning"
+          ? "rgba(239, 108, 0, 0.04)"
+          : "transparent"} !important;
+  border: 1px solid
     ${({ status }) =>
       status === "Success"
-        ? "#4caf50"
+        ? "rgba(46, 125, 50, 1)"
         : status === "Error"
-          ? "#f44336"
-          : status === "In Progress"
-            ? "#ff9800"
+          ? "rgba(211, 47, 47, 1)"
+          : status === "Warning"
+            ? "rgba(239, 108, 0, 1)"
             : ""} !important;
   color: ${({ status }) =>
     status === "Success"
-      ? "#4caf50"
+      ? "rgba(46, 125, 50, 1)"
       : status === "Error"
-        ? "#f44336"
-        : status === "In Progress"
-          ? "#ff9800"
+        ? "rgba(211, 47, 47, 1)"
+        : status === "Warning"
+          ? "rgba(239, 108, 0, 1)"
           : ""} !important;
   text-transform: uppercase;
   font-weight: bold;
+
   .MuiChip-label {
     color: inherit;
     padding: 0 8px;
   }
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 100px;
+
   &:before {
     content: "";
-    border: inherit;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    border: inherit;
+    border-radius: inherit;
     pointer-events: none;
   }
 `
