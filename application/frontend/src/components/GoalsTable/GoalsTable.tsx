@@ -1,8 +1,15 @@
 import React from "react"
 
-import { Table, TableBody, TableCell, TableHead, TableRow, TextField } from "@mui/material"
+import { TableBody, TableHead, TableRow } from "@mui/material"
 
 import { StatusSelector } from "../StatusSelector"
+import {
+  CustomTextField,
+  StyledTable,
+  StyledTableCell,
+  StyledTableRow,
+  TableContainer,
+} from "./GoalsTable.styled"
 
 interface Goal {
   title: string
@@ -17,43 +24,47 @@ interface GoalsTableProps {
 
 export const GoalsTable: React.FC<GoalsTableProps> = ({ goals, onGoalChange }) => {
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Название</TableCell>
-          <TableCell>Статус</TableCell>
-          <TableCell>Описание</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {goals.map((goal, index) => (
-          <TableRow key={index}>
-            <TableCell>
-              <TextField
-                fullWidth
-                value={goal.title}
-                onChange={(e) => onGoalChange(index, "title", e.target.value)}
-              />
-            </TableCell>
-            <TableCell>
-              <StatusSelector
-                value={goal.status}
-                onChange={(value) => onGoalChange(index, "status", value)}
-              />
-            </TableCell>
-            <TableCell>
-              <TextField
-                fullWidth
-                multiline
-                rows={2}
-                value={goal.description}
-                onChange={(e) => onGoalChange(index, "description", e.target.value)}
-              />
-            </TableCell>
+    <TableContainer>
+      <StyledTable>
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>Название</StyledTableCell>
+            <StyledTableCell>Статус</StyledTableCell>
+            <StyledTableCell>Описание</StyledTableCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {goals.map((goal, index) => (
+            <StyledTableRow key={index}>
+              <StyledTableCell>
+                <CustomTextField
+                  fullWidth
+                  value={goal.title}
+                  onChange={(e) => onGoalChange(index, "title", e.target.value)}
+                  variant="outlined"
+                />
+              </StyledTableCell>
+              <StyledTableCell>
+                <StatusSelector
+                  value={goal.status}
+                  onChange={(value) => onGoalChange(index, "status", value)}
+                />
+              </StyledTableCell>
+              <StyledTableCell>
+                <CustomTextField
+                  fullWidth
+                  multiline
+                  rows={2}
+                  value={goal.description}
+                  onChange={(e) => onGoalChange(index, "description", e.target.value)}
+                  variant="outlined"
+                />
+              </StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </StyledTable>
+    </TableContainer>
   )
 }
 
