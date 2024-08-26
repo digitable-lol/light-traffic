@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 
 import HomeIcon from "@mui/icons-material/Home"
-import { Container, Grid } from "@mui/material"
 
 import stack from "src/assets/stack.svg"
 import CreateReportButton from "src/components/CreateReportButton/CreateReportButton"
@@ -13,20 +12,15 @@ import { SearchBar } from "src/components/SearchBar"
 import { ViewModeToggle } from "src/components/ViewModeToggle"
 
 import {
-  Header,
-  SearchViewContainer,
-  StyledContainer,
+  Container,
+  HeaderSection,
+  NavButtonContainer,
+  ReportListContainer,
+  SearchBarContainer,
+  StyledBreadcrumbs,
   StyledTitle,
   TitleSection,
 } from "./Report.styled"
-
-const stageColors = {
-  Initial: "rgba(0, 122, 255, 1)",
-  Onboarding: "rgba(88, 86, 214, 1)",
-  "In progress": "rgba(255, 59, 48, 1)",
-  "In review": "rgba(255, 149, 0, 1)",
-  "In test": "rgba(52, 199, 89, 1)",
-}
 
 type ReportStage = "Initial" | "Onboarding" | "In progress" | "In review" | "In test"
 
@@ -55,7 +49,7 @@ const reports: Report[] = [
   {
     id: 2,
     name: "Report 2",
-    status: "In Progress",
+    status: "Error",
     author: "Jane Smith",
     authorAvatar: "/path/to/avatar2.jpg",
     startDate: "2023-08-05T09:15:00",
@@ -65,7 +59,7 @@ const reports: Report[] = [
   {
     id: 3,
     name: "Report 3",
-    status: "In Progress",
+    status: "Warning",
     author: "Jane Smith",
     authorAvatar: "/path/to/avatar2.jpg",
     startDate: "2023-08-25T09:15:00",
@@ -83,7 +77,7 @@ export const ReportPage: React.FC = () => {
     setSearchQuery(e.target.value)
   }
 
-  const clearSearch = () => {
+  const handleClearSearch = () => {
     setSearchQuery("")
   }
 
@@ -99,6 +93,10 @@ export const ReportPage: React.FC = () => {
     setOverlayOpen(false)
   }
 
+  const filteredReports = reports.filter((report) =>
+    report.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
+
   const minDate = new Date(Math.min(...reports.map((r) => new Date(r.startDate).getTime())))
   const maxDate = new Date(Math.max(...reports.map((r) => new Date(r.endDate).getTime())))
 
@@ -110,39 +108,42 @@ export const ReportPage: React.FC = () => {
   }))
 
   return (
-    <StyledContainer>
-      <Container maxWidth="lg">
-        <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
-          Home
-        </NavButton>
-        /<NavButton to="/">Проект название проекта</NavButton>
-        <Header container>
-          <Grid item>
-            <TitleSection>
-              <img src={stack} alt="Stack" style={{ width: 40, height: 40 }} />
-              <StyledTitle>Список проектов</StyledTitle>
-            </TitleSection>
-          </Grid>
-          <Grid item xs={12} sm={6} container justifyContent="flex-end">
-            <CreateReportButton onClick={handleCreateReport} />
-          </Grid>
-        </Header>
-        <SearchViewContainer>
-          <SearchBar
-            searchQuery={searchQuery}
-            onSearchChange={handleSearchChange}
-            onClearSearch={clearSearch}
-          />
-          <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />
-        </SearchViewContainer>
+    <Container>
+      <NavButtonContainer>
+        <StyledBreadcrumbs aria-label="breadcrumb">
+          <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
+            Список проектов
+          </NavButton>
+          <NavButton to="/projects/1">Проект "Название проекта"</NavButton>
+        </StyledBreadcrumbs>
+      </NavButtonContainer>
+      <HeaderSection>
+        <TitleSection>
+          <img src={stack} alt="Stack" style={{ width: 40, height: 40 }} />
+          <StyledTitle>Список отчетов</StyledTitle>
+        </TitleSection>
+        <CreateReportButton onClick={handleCreateReport} />
+      </HeaderSection>
+      <SearchBarContainer>
+        <SearchBar
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+          onClearSearch={handleClearSearch}
+          variant="standard"
+          placeholder="Search"
+          style={{ flexGrow: 1, marginRight: "16px" }}
+        />
+        <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />
+      </SearchBarContainer>
+      <ReportListContainer>
         {viewMode === "list" ? (
-          <ReportsTable reports={reports} />
+          <ReportsTable reports={filteredReports} />
         ) : (
-          <ReportTimeline reports={reportData} startDate={minDate} endDate={maxDate} />
+          <ReportTimeline reports={filteredReports} startDate={minDate} endDate={maxDate} />
         )}
-      </Container>
+      </ReportListContainer>
       <ReportOverlay isOpen={isOverlayOpen} onClose={closeOverlay} />
-    </StyledContainer>
+    </Container>
   )
 }
 
