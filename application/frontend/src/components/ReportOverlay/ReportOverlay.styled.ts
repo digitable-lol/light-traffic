@@ -46,7 +46,6 @@ export const OverlayHeader = styled.div`
   justify-content: space-between;
   padding: 16px;
   border-bottom: 1px solid #ddd;
-  background-color: #f5f5f5;
 `
 
 export const ColorCircle = styled.div<{ color: string }>`
