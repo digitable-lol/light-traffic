@@ -1,50 +1,58 @@
-import styled from "styled-components"
+import { Box, Breadcrumbs } from "@mui/material"
+import { styled } from "@mui/system"
 
-import { Grid, Typography } from "@mui/material"
-import { IconButton } from "@mui/material"
-
-export const StyledContainer = styled.div`
+export const Container = styled(Box)`
   padding: 16px;
+  padding-left: 48px;
+  padding-right: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `
 
-export const Header = styled(Grid)`
+export const NavButtonContainer = styled(Box)`
+  margin-top: 39px;
+`
+
+export const HeaderSection = styled(Box)`
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 49px;
 `
 
-export const Title = styled(Typography)`
-  flex-grow: 1;
-  text-align: center;
-  margin-left: 16px;
-`
-
-export const SettingsButton = styled(IconButton)`
-  margin-right: 16px;
-`
-
-export const HeaderRightContainer = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-export const TitleSection = styled.div`
+export const TitleSection = styled(Box)`
   display: flex;
   align-items: center;
   gap: 16px;
   flex: 1;
 `
 
-export const StyledTitle = styled.div`
+export const StyledTitle = styled("h1")`
   font-size: 34px;
   font-weight: 600;
   color: rgba(29, 27, 32, 1);
+  margin-left: 8px;
 `
 
-export const SearchViewContainer = styled.div`
+export const SearchBarContainer = styled(Box)`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 24px;
+  margin-top: 37px;
+  width: 100%;
+`
+
+export const ReportListContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 31px;
+`
+
+export const StyledBreadcrumbs = styled(Breadcrumbs)`
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #555;
 `
