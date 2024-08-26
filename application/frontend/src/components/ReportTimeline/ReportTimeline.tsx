@@ -13,6 +13,9 @@ import {
 } from "@mui/material"
 
 import {
+  DateCell,
+  DateNumber,
+  DayOfWeek,
   HeaderText,
   LineContainer,
   ScrollableBox,
@@ -24,9 +27,8 @@ import {
 type Report = {
   id: number
   name: string
-  startDate: Date
-  endDate: Date
-  color: string
+  startDate: string
+  endDate: string
   stage: string
 }
 
@@ -46,6 +48,14 @@ const getDaysArray = (start: Date, end: Date): Date[] => {
     dt.setDate(dt.getDate() + 1)
   }
   return arr
+}
+
+const stageColors: { [key: string]: string } = {
+  Initial: "rgba(0, 122, 255, 1)",
+  Onboarding: "rgba(88, 86, 214, 1)",
+  "In progress": "rgba(255, 59, 48, 1)",
+  "In review": "rgba(255, 149, 0, 1)",
+  "In test": "rgba(52, 199, 89, 1)",
 }
 
 export const ReportTimeline: React.FC<ReportTimelineProps> = ({ reports, startDate, endDate }) => {
@@ -88,8 +98,10 @@ export const ReportTimeline: React.FC<ReportTimelineProps> = ({ reports, startDa
                   <TableCell />
                   {days.map((day, index) => (
                     <StickyHeaderCell key={index} align="center">
-                      <HeaderText variant="body2">{adjustedDaysOfWeek[day.getDay()]}</HeaderText>
-                      <Typography variant="body2">{day.getDate()}</Typography>
+                      <DateCell>
+                        <DayOfWeek variant="body2">{adjustedDaysOfWeek[day.getDay()]}</DayOfWeek>
+                        <DateNumber variant="body2">{day.getDate()}</DateNumber>
+                      </DateCell>
                     </StickyHeaderCell>
                   ))}
                 </TableRow>
@@ -99,12 +111,22 @@ export const ReportTimeline: React.FC<ReportTimelineProps> = ({ reports, startDa
                   <TableRow key={report.id}>
                     <TableCell />
                     {days.map((day, index) => {
-                      const isWithinRange =
-                        day >= new Date(report.startDate.setHours(0, 0, 0, 0)) &&
-                        day <= new Date(report.endDate.setHours(23, 59, 59, 999))
+                      const reportStartDate = new Date(report.startDate)
+                      const reportEndDate = new Date(report.endDate)
+
+                      const dayStart = new Date(day)
+                      dayStart.setHours(0, 0, 0, 0)
+
+                      const dayEnd = new Date(day)
+                      dayEnd.setHours(23, 59, 59, 999)
+
+                      const isWithinRange = dayStart <= reportEndDate && dayEnd >= reportStartDate
+
+                      const color = stageColors[report.stage]
+
                       return (
                         <TimelineCell key={index}>
-                          {isWithinRange && <LineContainer color={report.color} />}
+                          {isWithinRange && <LineContainer color={color} />}
                         </TimelineCell>
                       )
                     })}
