@@ -36,7 +36,7 @@ class Report(models.Model):
 
 class Project(models.Model):
     project_name = models.CharField(max_length=100)
-    project_discription = models.TextField(max_length=500)
+    project_description = models.TextField(max_length=500)
     project_start_time = models.DateTimeField()
     project_end_time = models.DateTimeField()
     employee = models.ManyToManyField(Employee)
@@ -54,5 +54,6 @@ class Objective(models.Model):
     objective_color = models.CharField(max_length=1,choices=COLOR_CHOICES,default="G")
     related_report = models.ForeignKey(to = "Report", on_delete=models.CASCADE,default=0)
     is_deleted = models.BooleanField(default=False)
+    objective_descripion = models.CharField(max_length=100)
     def __str__(self):
         return self.objective_name
