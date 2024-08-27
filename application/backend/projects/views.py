@@ -69,6 +69,25 @@ class Employes_List_API_View(viewsets.ModelViewSet):
         except IndexError:
             logging.exception("Index out of range")
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    def update(self, request, *args, **kwargs):
+        logging.info(request)
+        try:
+            details = Employee.objects.get(id=kwargs['pk'])
+            logging.info('Object found')
+            serializer = Employee_Serializer(
+            details, data=request.data, partial=True)
+            serializer.is_valid()
+            logging.info('Data is valid')
+            serializer.save()
+            logging.info('Changes have been applied',serializer.data)
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        except ValidationError:
+            logging.exception('Data is not valid')
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except Employee.DoesNotExist:
+            logging.exception('Object not found')
+            return Response(status=status.HTTP_404_NOT_FOUND)
     
 
 
