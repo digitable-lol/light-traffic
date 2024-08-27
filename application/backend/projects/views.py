@@ -59,7 +59,8 @@ class Employes_List_API_View(viewsets.ModelViewSet):
         try:
             data = Employee.objects.filter(id = kwargs['pk'])[0]
             logging.info('Object found')
-            data.delete()
+            data.is_deleted = True
+            data.save()
             logging.info('Object deleted')
             return Response(status = status.HTTP_201_CREATED)
         except Employee.DoesNotExist:
@@ -129,7 +130,8 @@ class Project_List_API_View(viewsets.ModelViewSet):
         try:
             data = Project.objects.filter(id = kwargs['pk'])[0]
             logging.info('Object found')
-            data.delete()
+            data.is_deleted = True
+            data.save()
             logging.info('Object deleted')
             return Response(status = status.HTTP_201_CREATED)
         except Employee.DoesNotExist:
@@ -201,7 +203,8 @@ class Report_List_API_View(viewsets.ModelViewSet):
         try:
             data = Report.objects.filter(id = kwargs['pk'])[0]
             logging.info('Object found')
-            data.delete()
+            data.is_deleted = True
+            data.save()
             logging.info('Object deleted')
             return Response(status = status.HTTP_201_CREATED)
         except Employee.DoesNotExist:
@@ -262,7 +265,8 @@ class Objective_List_API_View(viewsets.ModelViewSet):
         try:
             data = Objective.objects.filter(id = kwargs['pk'])[0]
             logging.info('Object found')
-            data.delete()
+            data.is_deleted = True
+            data.save()
             logging.info('Object deleted')
             return Response(status = status.HTTP_201_CREATED)
         except Employee.DoesNotExist:
