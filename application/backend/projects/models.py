@@ -6,6 +6,7 @@ class Employee(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     is_deleted = models.BooleanField(default=False)
+    employee_email = models.CharField(max_length=50)
 
     def __str__(self):
         return self.first_name +" " + self.last_name
