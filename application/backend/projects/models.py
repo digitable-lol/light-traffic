@@ -5,6 +5,7 @@ class Employee(models.Model):
     
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.first_name +" " + self.last_name
@@ -21,6 +22,7 @@ class Report(models.Model):
     other_comments = models.TextField(max_length=1000,default="Nothing")
     report_creater = models.OneToOneField(Employee, on_delete = models.DO_NOTHING,default=0)
     related_project = models.ForeignKey(to="Project",on_delete=models.CASCADE,default=0)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.report_name
@@ -31,6 +33,7 @@ class Project(models.Model):
     project_start_time = models.DateTimeField()
     project_end_time = models.DateTimeField()
     employee = models.ManyToManyField(Employee)
+    is_deleted = models.BooleanField(default=False)
     def __str__(self):
         return self.project_name
 
@@ -43,5 +46,6 @@ class Objective(models.Model):
     objective_name = models.CharField(max_length=100)
     objective_color = models.CharField(max_length=1,choices=COLOR_CHOICES,default="G")
     related_report = models.ForeignKey(to = "Report", on_delete=models.CASCADE,default=0)
+    is_deleted = models.BooleanField(default=False)
     def __str__(self):
         return self.objective_name
