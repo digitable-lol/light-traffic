@@ -21,7 +21,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
-            data = Employee.objects.filter(id = kwargs['pk'])[0]
+            data = Employee.objects.filter(id = kwargs['pk'],is_deleted = False)[0]
             serializer = Employee_Serializer(data)
             logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
@@ -84,7 +84,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
-            data = Project.objects.filter(id = kwargs['pk'])[0]
+            data = Project.objects.filter(id = kwargs['pk'],is_deleted = False)[0]
             serializer = Project_Serializer(data)
             logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
@@ -148,7 +148,7 @@ class Report_List_API_View(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
-            data = Report.objects.filter(id = kwargs['pk'])[0]
+            data = Report.objects.filter(id = kwargs['pk'],is_deleted = False)[0]
             serializer = Report_Serializer(data)
             logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
@@ -240,7 +240,7 @@ class Objective_List_API_View(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         logging.info(f'{request},find - id = {kwargs["pk"]}')
         try:
-            data = Objective.objects.filter(id = kwargs['pk'])[0]
+            data = Objective.objects.filter(id = kwargs['pk'],is_deleted = False)[0]
             serializer = Objective_Serializer(data)
             logging.info('Object found')
             return Response(serializer.data,status = status.HTTP_200_OK)
