@@ -12,6 +12,11 @@ class Employee(models.Model):
         return self.first_name +" " + self.last_name
 
 class Report(models.Model):
+    COLOR_CHOICES = {
+        "R": "Red",
+        "G": "Green",
+        "Y": "Yellow",
+    }
     report_name = models.CharField(max_length=100)
     report_start = models.DateTimeField()
     report_finish = models.DateTimeField()
@@ -24,6 +29,7 @@ class Report(models.Model):
     report_creater = models.OneToOneField(Employee, on_delete = models.DO_NOTHING,default=0)
     related_project = models.ForeignKey(to="Project",on_delete=models.CASCADE,default=0)
     is_deleted = models.BooleanField(default=False)
+    final_report_color = models.CharField(max_length=1,choices=COLOR_CHOICES,default='G')
 
     def __str__(self):
         return self.report_name
