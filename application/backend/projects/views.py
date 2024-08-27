@@ -3,7 +3,6 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 import logging
-from rest_framework.decorators import action
 from .models import Employee, Objective, Project, Report
 from .serializers import Employee_Serializer, Objective_Serializer, Project_Serializer, Report_Serializer
 # Create your views here.
@@ -14,7 +13,7 @@ class Employes_List_API_View(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         logging.info(f"{request} - list all objects")
-        data = list(Employee.objects.all().values())
+        data = list(Employee.objects.filter(is_deleted = False).values())
         return Response(data,status=status.HTTP_200_OK)
     
     # read one by ID
@@ -69,30 +68,6 @@ class Employes_List_API_View(viewsets.ModelViewSet):
             logging.exception("Index out of range")
             return Response(status=status.HTTP_404_NOT_FOUND)
     
-    @action(detail=False, methods=['post'])
-    def search(self,request,*args,**kwargs):
-        logging.info(f'{request}:{request.data}')
-        data = Employee.objects.all()
-        if request.data.get('id'):
-            search_by_id = Employee.objects.filter(id = request.data.get('id'))
-            data = data.intersection(search_by_id)
-            print(data)
-        if request.data.get('first_name'):
-            search_by_first_name = Employee.objects.filter(first_name = request.data.get('first_name'))
-            data = data.intersection(search_by_first_name)
-            print(data)
-        if request.data.get('last_name'):
-            search_by_last_name = Employee.objects.filter(first_name = request.data.get('last_name'))
-            data = data.intersection(search_by_last_name)
-            print(data)
-        serializer = Employee_Serializer(data = data, many = True)
-        serializer.is_valid()
-        if serializer.data.__len__() != 0:
-            logging.info(f'Objects found {serializer.data}')
-            return Response(serializer.data,status=status.HTTP_200_OK)
-        else:
-            logging.info('Objects not found')
-            return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 class Project_List_API_View(viewsets.ModelViewSet):
@@ -102,9 +77,8 @@ class Project_List_API_View(viewsets.ModelViewSet):
     # list all
     def list(self,request,*args,**kwarfs):
         logging.info(f"{request} - list all objects")
-        projects = Project.objects.all()
-        serializer = Project_Serializer(projects,many = True)
-        return Response(serializer.data,status = status.HTTP_200_OK)
+        data = list(Project.objects.filter(is_deleted = False).values())
+        return Response(data,status = status.HTTP_200_OK)
     
     # read one
     def retrieve(self, request, *args, **kwargs):
@@ -126,7 +100,7 @@ class Project_List_API_View(viewsets.ModelViewSet):
         logging.info(f"{request},{request.data}")
         data = {
             'project_name': request.data.get('project_name'),
-            'project_discription': request.data.get('project_discription'),
+            'project_description': request.data.get('project_description'),
             'project_start_time': request.data.get('project_start_time'),
             'project_end_time': request.data.get('project_end_time'),
             'employee': request.data.get('employee')
@@ -167,9 +141,8 @@ class Report_List_API_View(viewsets.ModelViewSet):
     # list of all reports of this project
     def list(self,request,*args,**kwargs):
         logging.info(f"{request} - list all objects")
-        reports = Report.objects.all()
-        serializer = Report_Serializer(reports,many = True)
-        return Response(serializer.data,status = status.HTTP_200_OK)
+        data = list(Report.objects.filter(is_deleted = False).values())
+        return Response(data,status = status.HTTP_200_OK)
     
     # read report by ID
     def retrieve(self, request, *args, **kwargs):
@@ -239,9 +212,8 @@ class Objective_List_API_View(viewsets.ModelViewSet):
     # list of all objectives of this report
     def list(self,request,*args,**kards):
         logging.info(f"{request} - list all objects")
-        objectives = Objective.objects.all()
-        serializer = Objective_Serializer(objectives,many = True)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+        data = list(Objective.objects.filter(is_deleted = False).values())
+        return Response(data,status=status.HTTP_200_OK)
     
     # Create the Objective for this report
     def create(self,request,*args,**kwargs):
