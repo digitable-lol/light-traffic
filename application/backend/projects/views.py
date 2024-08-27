@@ -1,3 +1,4 @@
+import datetime
 from django.forms import ValidationError
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -77,8 +78,13 @@ class Project_List_API_View(viewsets.ModelViewSet):
     # list all
     def list(self,request,*args,**kwarfs):
         logging.info(f"{request} - list all objects")
+        response_data = []
         data = list(Project.objects.filter(is_deleted = False).values())
-        return Response(data,status = status.HTTP_200_OK)
+        current_time = datetime.datetime.now().timestamp()
+        for i in data:
+            if i["project_start_time"].timestamp() < current_time and i["project_end_time"].timestamp() > current_time:
+                response_data.append(i)
+        return Response(response_data,status = status.HTTP_200_OK)
     
     # read one
     def retrieve(self, request, *args, **kwargs):
