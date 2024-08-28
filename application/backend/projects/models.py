@@ -26,7 +26,7 @@ class Report(models.Model):
     employee_going_vacation = models.BooleanField(default=False)
     anyone_going_vacation = models.CharField(max_length=100,default="Nobody")
     other_comments = models.TextField(max_length=1000,default="Nothing")
-    report_creater = models.OneToOneField(Employee, on_delete = models.DO_NOTHING,default=0)
+    report_creater = models.ForeignKey(Employee, on_delete = models.DO_NOTHING,default=0)
     related_project = models.ForeignKey(to="Project",on_delete=models.CASCADE,default=0)
     is_deleted = models.BooleanField(default=False)
     final_report_color = models.CharField(max_length=1,choices=COLOR_CHOICES,default='G')
