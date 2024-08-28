@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
 
 import React, { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import {
   Button,
@@ -38,6 +39,7 @@ interface Goal {
 }
 
 export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation()
   const [tab, setTab] = useState<number>(0)
   const [onVacation, setOnVacation] = useState<string>("")
   const [reporterOnVacation, setReporterOnVacation] = useState<string>("")
@@ -63,21 +65,21 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
       <CreateReportOverlay isOpen={isOpen}>
         <OverlayContainer>
           <OverlayHeader>
-            <Typography variant="h6">Создать отчет</Typography>
+            <Typography variant="h6">{t("reportOverlay.createReport")}</Typography>
           </OverlayHeader>
           <form>
             <Grid container spacing={2}>
               <Grid item xs={12} container spacing={2}>
                 <Grid item xs={6}>
-                  <TextField fullWidth label="Название отчета" variant="outlined" />
+                  <TextField fullWidth label={t("reportOverlay.reportName")} variant="outlined" />
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl fullWidth variant="outlined">
-                    <InputLabel>Итоговый цвет светофора</InputLabel>
-                    <Select label="Итоговый цвет светофора" defaultValue="">
-                      <MenuItem value="Success">Успех</MenuItem>
-                      <MenuItem value="Error">Ошибка</MenuItem>
-                      <MenuItem value="In Progress">В процессе</MenuItem>
+                    <InputLabel>{t("reportOverlay.trafficLightColor")}</InputLabel>
+                    <Select label={t("reportOverlay.trafficLightColor")} defaultValue="">
+                      <MenuItem value="Success">{t("reportOverlay.success")}</MenuItem>
+                      <MenuItem value="Error">{t("reportOverlay.error")}</MenuItem>
+                      <MenuItem value="Warning">{t("reportOverlay.warning")}</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -87,7 +89,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                 <Grid item xs={6}>
                   <TextField
                     fullWidth
-                    label="Дата начала"
+                    label={t("reportOverlay.startDate")}
                     type="datetime-local"
                     InputLabelProps={{
                       shrink: true,
@@ -99,7 +101,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                 <Grid item xs={6}>
                   <TextField
                     fullWidth
-                    label="Дата окончания"
+                    label={t("reportOverlay.endDate")}
                     type="datetime-local"
                     InputLabelProps={{
                       shrink: true,
@@ -112,8 +114,8 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
 
               <Grid item xs={12}>
                 <Tabs value={tab} onChange={handleTabChange} aria-label="report tabs">
-                  <Tab label="Основное" />
-                  <Tab label="Цели" />
+                  <Tab label={t("reportOverlay.main")} />
+                  <Tab label={t("reportOverlay.goals")} />
                 </Tabs>
               </Grid>
 
@@ -122,20 +124,32 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                   <>
                     <Grid container spacing={2} marginTop={2}>
                       <Grid item xs={12}>
-                        <Typography variant="h6">Цвета светофора</Typography>
+                        <Typography variant="h6">{t("reportOverlay.colors")}</Typography>
                       </Grid>
                       <Grid item xs={12}>
                         <ColorTextContainer>
                           <ColorCircle color="red" />
-                          <TextField variant="outlined" label="value" fullWidth />
+                          <TextField
+                            variant="outlined"
+                            label={t("reportOverlay.colorValue")}
+                            fullWidth
+                          />
                         </ColorTextContainer>
                         <ColorTextContainer>
                           <ColorCircle color="orange" />
-                          <TextField variant="outlined" label="value" fullWidth />
+                          <TextField
+                            variant="outlined"
+                            label={t("reportOverlay.colorValue")}
+                            fullWidth
+                          />
                         </ColorTextContainer>
                         <ColorTextContainer>
                           <ColorCircle color="green" />
-                          <TextField variant="outlined" label="value" fullWidth />
+                          <TextField
+                            variant="outlined"
+                            label={t("reportOverlay.colorValue")}
+                            fullWidth
+                          />
                         </ColorTextContainer>
                       </Grid>
                     </Grid>
@@ -143,27 +157,27 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                     <Grid container spacing={2} marginTop={2}>
                       <Grid item xs={6}>
                         <FormControl fullWidth variant="outlined">
-                          <InputLabel>Идет ли кто-то в отпуск?</InputLabel>
+                          <InputLabel>{t("reportOverlay.onVacation")}</InputLabel>
                           <Select
-                            label="Идет ли кто-то в отпуск?"
+                            label={t("reportOverlay.onVacation")}
                             value={onVacation}
                             onChange={(e) => setOnVacation(e.target.value)}
                           >
-                            <MenuItem value="Yes">Да</MenuItem>
-                            <MenuItem value="No">Нет</MenuItem>
+                            <MenuItem value="Yes">{t("reportOverlay.yes")}</MenuItem>
+                            <MenuItem value="No">{t("reportOverlay.no")}</MenuItem>
                           </Select>
                         </FormControl>
                       </Grid>
                       <Grid item xs={6}>
                         <FormControl fullWidth variant="outlined">
-                          <InputLabel>Идет ли в отпуск тот, кто пишет отчет?</InputLabel>
+                          <InputLabel>{t("reportOverlay.reporterOnVacation")}</InputLabel>
                           <Select
-                            label="Идет ли в отпуск тот, кто пишет отчет?"
+                            label={t("reportOverlay.reporterOnVacation")}
                             value={reporterOnVacation}
                             onChange={(e) => setReporterOnVacation(e.target.value)}
                           >
-                            <MenuItem value="Yes">Да</MenuItem>
-                            <MenuItem value="No">Нет</MenuItem>
+                            <MenuItem value="Yes">{t("reportOverlay.yes")}</MenuItem>
+                            <MenuItem value="No">{t("reportOverlay.no")}</MenuItem>
                           </Select>
                         </FormControl>
                       </Grid>
@@ -175,7 +189,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                   <>
                     <Grid item xs={12}>
                       <Button variant="text" color="primary" onClick={handleAddGoal}>
-                        + Добавить цель
+                        {t("reportOverlay.addGoal")}
                       </Button>
                     </Grid>
                     <Grid item xs={12}>
@@ -188,7 +202,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
               <Grid item xs={12} container spacing={2} justifyContent="flex-end">
                 <ButtonContainer>
                   <Button variant="contained" color="primary" type="submit">
-                    Создать
+                    {t("reportOverlay.submit")}
                   </Button>
                   <Button
                     variant="outlined"
@@ -196,7 +210,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                     onClick={onClose}
                     style={{ marginLeft: "8px" }}
                   >
-                    Отмена
+                    {t("reportOverlay.cancel")}
                   </Button>
                 </ButtonContainer>
               </Grid>
