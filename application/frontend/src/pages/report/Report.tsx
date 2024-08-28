@@ -113,7 +113,7 @@ export const ReportPage: React.FC = () => {
     <Container>
       <NavButtonContainer>
         <StyledBreadcrumbs aria-label="breadcrumb">
-          <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
+          <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
             {t("projectList")}
           </NavButton>
           <NavButton to="/projects/1">{t("projectName", { name: "Название проекта" })}</NavButton>
