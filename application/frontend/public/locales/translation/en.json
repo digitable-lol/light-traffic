@@ -1,3 +1,56 @@
 {
-  "header": "Header"
+  "header": "Header",
+  "projectList": "Project List",
+  "settings": "Settings",
+  "search": "Search",
+   "projects": "Projects",
+  "quiz": "Quiz",
+  "rating": "Rating",
+  "notifications": "Notifications",
+  "profile": "Profile",
+  "more": "More",
+  "toggleTheme": "Toggle Theme",
+  "changeLanguage": "Change Language",
+  "projectName": "Project \"{{name}}\"",
+  "reportList": "Report List",
+  "searchPlaceholder": "Search",
+  "createReport": "Create Report",
+   "status": {
+    "Error": "Error",
+    "Success": "Success",
+    "Warning": "Warning"
+  },
+  "goalsTable": {
+    "title": "Title",
+    "status": "Status",
+    "description": "Description"
+  },
+  "reportsTable": {
+    "name": "Name",
+    "status": "Status",
+    "author": "Author",
+    "startDate": "Start Date",
+    "endDate": "End Date"
+  },
+  "reportOverlay": {
+    "createReport": "Create Report",
+    "reportName": "Report Name",
+    "trafficLightColor": "Traffic Light Color",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "colors": "Traffic Light Colors",
+    "onVacation": "Is anyone on vacation?",
+    "reporterOnVacation": "Is the reporter on vacation?",
+    "addGoal": "+ Add Goal",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "main": "Main",
+    "goals": "Goals",
+    "colorValue": "Value",
+    "yes":"Yes",
+    "no":"No"
+  }
 }

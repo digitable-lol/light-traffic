@@ -1,3 +1,56 @@
 {
-  "header": "Шапка"
+  "header": "Шапка",
+  "projectList": "Список проектов",
+  "settings": "Настройки",
+  "search": "Поиск",
+  "projects": "Проекты",
+  "quiz": "Опрос",
+  "rating": "Рейтинг",
+  "notifications": "Уведомления",
+  "profile": "Профиль",
+  "more": "Ещё",
+  "toggleTheme": "Переключить тему",
+  "changeLanguage": "Сменить язык",
+  "projectName": "Проект \"{{name}}\"",
+  "reportList": "Список отчетов",
+  "searchPlaceholder": "Поиск",
+   "createReport": "Создать отчет",
+    "status": {
+    "Error": "Ошибка",
+    "Success": "Успех",
+    "Warning": "Предупреждение"
+  },
+  "goalsTable": {
+    "title": "Название",
+    "status": "Статус",
+    "description": "Описание"
+  },
+    "reportsTable": {
+    "name": "Название",
+    "status": "Статус",
+    "author": "Автор",
+    "startDate": "Дата начала",
+    "endDate": "Дата окончания"
+  },
+  "reportOverlay": {
+    "createReport": "Создать отчет",
+    "reportName": "Название отчета",
+    "trafficLightColor": "Итоговый цвет светофора",
+    "success": "Успех",
+    "error": "Ошибка",
+    "warning": "Предупреждение",
+    "startDate": "Дата начала",
+    "endDate": "Дата окончания",
+    "colors": "Цвета светофора",
+    "onVacation": "Идет ли кто-то в отпуск?",
+    "reporterOnVacation": "Идет ли в отпуск тот, кто пишет отчет?",
+    "addGoal": "+ Добавить цель",
+    "cancel": "Отмена",
+    "submit": "Создать",
+    "main": "Основное",
+    "goals": "Цели",
+    "colorValue": "Текст",
+    "yes":"Да",
+    "no":"Нет"
+  }
 }
