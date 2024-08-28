@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 
 import { AccountCircleOutlined, MoreVertOutlined, NotificationsOutlined } from "@mui/icons-material"
 import { Button, IconButton, Switch, Tooltip, Typography } from "@mui/material"
@@ -21,6 +22,7 @@ import {
 export const Header: React.FC = () => {
   const { theme, change } = useTheme()
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     UserController.get()
@@ -36,23 +38,11 @@ export const Header: React.FC = () => {
         </Logo>
         <NavButtons>
           <Button
-            onClick={() => console.log("Home clicked")}
+            onClick={() => navigate("/")}
             sx={{
               color: "inherit",
               textDecoration: "none",
-              "&:hover": {
-                color: theme.palette.primary.main,
-                textDecoration: "underline",
-              },
-            }}
-          >
-            {t("home")}
-          </Button>
-          <Button
-            onClick={() => console.log("Projects clicked")}
-            sx={{
-              color: "inherit",
-              textDecoration: "none",
+              textTransform: "none",
               "&:hover": {
                 color: theme.palette.primary.main,
                 textDecoration: "underline",
@@ -60,6 +50,34 @@ export const Header: React.FC = () => {
             }}
           >
             {t("projects")}
+          </Button>
+          <Button
+            onClick={() => console.log("Quiz clicked")}
+            sx={{
+              color: "inherit",
+              textDecoration: "none",
+              textTransform: "none",
+              "&:hover": {
+                color: theme.palette.primary.main,
+                textDecoration: "underline",
+              },
+            }}
+          >
+            {t("quiz")}
+          </Button>
+          <Button
+            onClick={() => console.log("Rating clicked")}
+            sx={{
+              color: "inherit",
+              textDecoration: "none",
+              textTransform: "none",
+              "&:hover": {
+                color: theme.palette.primary.main,
+                textDecoration: "underline",
+              },
+            }}
+          >
+            {t("rating")}
           </Button>
         </NavButtons>
       </LeftSection>

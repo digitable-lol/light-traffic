@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
 
 import React from "react"
+import { useTranslation } from "react-i18next"
 
 import { Table, TableBody, TableHead } from "@mui/material"
 
@@ -31,16 +32,18 @@ interface ReportsTableProps {
 }
 
 export const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
+  const { t } = useTranslation()
+
   return (
     <CustomTableContainer>
       <Table>
         <TableHead>
           <TableHeaderRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>Status</StyledTableCell>
-            <StyledTableCell>Author</StyledTableCell>
-            <StyledTableCell>Start Date</StyledTableCell>
-            <StyledTableCell>End Date</StyledTableCell>
+            <StyledTableCell>{t("reportsTable.name")}</StyledTableCell>
+            <StyledTableCell>{t("reportsTable.status")}</StyledTableCell>
+            <StyledTableCell>{t("reportsTable.author")}</StyledTableCell>
+            <StyledTableCell>{t("reportsTable.startDate")}</StyledTableCell>
+            <StyledTableCell>{t("reportsTable.endDate")}</StyledTableCell>
           </TableHeaderRow>
         </TableHead>
         <TableBody>
