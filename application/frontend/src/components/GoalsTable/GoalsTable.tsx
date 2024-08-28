@@ -1,4 +1,5 @@
 import React from "react"
+import { useTranslation } from "react-i18next"
 
 import { TableBody, TableHead, TableRow } from "@mui/material"
 
@@ -23,14 +24,16 @@ interface GoalsTableProps {
 }
 
 export const GoalsTable: React.FC<GoalsTableProps> = ({ goals, onGoalChange }) => {
+  const { t } = useTranslation()
+
   return (
     <TableContainer>
       <StyledTable>
         <TableHead>
           <TableRow>
-            <StyledTableCell>Название</StyledTableCell>
-            <StyledTableCell>Статус</StyledTableCell>
-            <StyledTableCell>Описание</StyledTableCell>
+            <StyledTableCell>{t("goalsTable.title")}</StyledTableCell>
+            <StyledTableCell>{t("goalsTable.status")}</StyledTableCell>
+            <StyledTableCell>{t("goalsTable.description")}</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

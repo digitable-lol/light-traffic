@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import HomeIcon from "@mui/icons-material/Home"
 
@@ -69,6 +70,7 @@ const reports: Report[] = [
 ]
 
 export const ReportPage: React.FC = () => {
+  const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [viewMode, setViewMode] = useState<"list" | "timeline">("list")
   const [isOverlayOpen, setOverlayOpen] = useState<boolean>(false)
@@ -112,15 +114,15 @@ export const ReportPage: React.FC = () => {
       <NavButtonContainer>
         <StyledBreadcrumbs aria-label="breadcrumb">
           <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
-            Список проектов
+            {t("projectList")}
           </NavButton>
-          <NavButton to="/projects/1">Проект "Название проекта"</NavButton>
+          <NavButton to="/projects/1">{t("projectName", { name: "Название проекта" })}</NavButton>
         </StyledBreadcrumbs>
       </NavButtonContainer>
       <HeaderSection>
         <TitleSection>
-          <img src={stack} alt="Stack" style={{ width: 40, height: 40 }} />
-          <StyledTitle>Список отчетов</StyledTitle>
+          <img src={stack} alt={t("stackIconAlt")} style={{ width: 40, height: 40 }} />
+          <StyledTitle>{t("reportList")}</StyledTitle>
         </TitleSection>
         <CreateReportButton onClick={handleCreateReport} />
       </HeaderSection>
@@ -130,7 +132,7 @@ export const ReportPage: React.FC = () => {
           onSearchChange={handleSearchChange}
           onClearSearch={handleClearSearch}
           variant="standard"
-          placeholder="Search"
+          placeholder={t("searchPlaceholder")}
           style={{ flexGrow: 1, marginRight: "16px" }}
         />
         <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />
