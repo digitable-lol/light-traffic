@@ -1,17 +1,17 @@
 import { RouteObject, useRoutes } from "react-router-dom"
 
-import { ProjectPage } from "src/pages/project"
-import { ReportPage } from "src/pages/report"
-
-import { Layout } from "../components/Layout/Layout"
-import { Home } from "../pages/Home"
+import { Layout } from "src/components/Layout/Layout"
+import { Home } from "src/pages/Home"
+import { ProjectPage } from "src/pages/Project"
+import { ReportPage } from "src/pages/Report"
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <ProjectPage /> },
+      { index: true, element: <Home /> },
+      { path: "project", element: <ProjectPage /> },
       { path: "reports", element: <ReportPage /> },
     ],
   },
