@@ -52,5 +52,6 @@
     "colorValue": "Value",
     "yes":"Yes",
     "no":"No"
-  }
+  },
+  "selectUser": "Select your user"
 }
