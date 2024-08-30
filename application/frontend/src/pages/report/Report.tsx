@@ -7,10 +7,11 @@ import stack from "src/assets/stack.svg"
 import CreateReportButton from "src/components/CreateReportButton/CreateReportButton"
 import { NavButton } from "src/components/NavButton"
 import ReportOverlay from "src/components/ReportOverlay/ReportOverlay"
-import ReportTimeline from "src/components/ReportTimeline/ReportTimeline"
 import ReportsTable from "src/components/ReportsTable/ReportsTable"
 import { SearchBar } from "src/components/SearchBar"
 import { ViewModeToggle } from "src/components/ViewModeToggle"
+import { Gantt } from "src/lib/gantt/gantt"
+import { Task, ViewMode } from "src/types/public-types"
 
 import {
   Container,
@@ -69,6 +70,14 @@ const reports: Report[] = [
   },
 ]
 
+const tasks: Task[] = reports.map((report) => ({
+  id: report.id.toString(),
+  name: report.name,
+  start: new Date(report.startDate),
+  end: new Date(report.endDate),
+  progress: 0,
+}))
+
 export const ReportPage: React.FC = () => {
   const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState<string>("")
@@ -98,6 +107,34 @@ export const ReportPage: React.FC = () => {
   const filteredReports = reports.filter((report) =>
     report.name.toLowerCase().includes(searchQuery.toLowerCase()),
   )
+
+  const handleDateChange = (taskId: string, newDate: Date) => {
+    console.log(`Date changed for task ${taskId}: ${newDate}`)
+  }
+
+  const handleProgressChange = (taskId: string, newProgress: number) => {
+    console.log(`Progress changed for task ${taskId}: ${newProgress}`)
+  }
+
+  const handleDoubleClick = (taskId: string) => {
+    console.log(`Task ${taskId} double-clicked`)
+  }
+
+  const handleClick = (taskId: string) => {
+    console.log(`Task ${taskId} clicked`)
+  }
+
+  const handleDelete = (taskId: string) => {
+    console.log(`Task ${taskId} deleted`)
+  }
+
+  const handleSelect = (task: Task, isSelected: boolean) => {
+    console.log(`Task ${task.id} ${isSelected ? "selected" : "deselected"}`)
+  }
+
+  const handleExpanderClick = (task: Task) => {
+    console.log(`Expander clicked for task ${task.id}`)
+  }
 
   const minDate = new Date(Math.min(...reports.map((r) => new Date(r.startDate).getTime())))
   const maxDate = new Date(Math.max(...reports.map((r) => new Date(r.endDate).getTime())))
@@ -141,7 +178,67 @@ export const ReportPage: React.FC = () => {
         {viewMode === "list" ? (
           <ReportsTable reports={filteredReports} />
         ) : (
-          <ReportTimeline reports={filteredReports} startDate={minDate} endDate={maxDate} />
+          <Gantt
+            tasks={tasks}
+            headerHeight={60}
+            columnWidth={70}
+            listCellWidth="200px"
+            rowHeight={60}
+            ganttHeight={500}
+            viewMode={ViewMode.Week}
+            preStepsCount={2}
+            locale="en-US"
+            barFill={70}
+            barCornerRadius={5}
+            barProgressColor="#4a90e2"
+            barProgressSelectedColor="#007aff"
+            barBackgroundColor="#d3d3d3"
+            barBackgroundSelectedColor="#bfbfbf"
+            projectProgressColor="#32c5d2"
+            projectProgressSelectedColor="#24a4a9"
+            projectBackgroundColor="#f5a623"
+            projectBackgroundSelectedColor="#f39c12"
+            milestoneBackgroundColor="#e67e22"
+            milestoneBackgroundSelectedColor="#d35400"
+            rtl={false}
+            handleWidth={10}
+            timeStep={60000}
+            arrowColor="blue"
+            fontFamily="Arial, sans-serif"
+            fontSize="16px"
+            arrowIndent={25}
+            todayColor="rgba(255, 0, 0, 0.2)"
+            viewDate={new Date("2024-08-01")}
+            TooltipContent={({ task }) => <div>Tooltip for {task.name}</div>}
+            TaskListHeader={({ rowHeight }) => <div style={{ height: rowHeight }}>Header</div>}
+            TaskListTable={({ tasks, rowHeight }) => (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Start</th>
+                    <th>End</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tasks.map((task) => (
+                    <tr key={task.id}>
+                      <td>{task.name}</td>
+                      <td>{task.start.toDateString()}</td>
+                      <td>{task.end.toDateString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+            onDateChange={handleDateChange}
+            onProgressChange={handleProgressChange}
+            onDoubleClick={handleDoubleClick}
+            onClick={handleClick}
+            onDelete={handleDelete}
+            onSelect={handleSelect}
+            onExpanderClick={handleExpanderClick}
+          />
         )}
       </ReportListContainer>
       <ReportOverlay isOpen={isOverlayOpen} onClose={closeOverlay} />
