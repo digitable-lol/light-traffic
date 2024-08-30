@@ -1,11 +1,12 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import { Box } from "@mui/material"
 
 import { ArrowIcon, Avatar, ProfileCardContainer, ProfileName } from "./ProfileCard.styled"
 
-const getRandomColor = () => {
+const getAvatarColor = (index: number) => {
   const colors = [
     "rgba(0, 145, 255, 1)",
     "rgba(0, 100, 200, 1)",
@@ -16,7 +17,7 @@ const getRandomColor = () => {
     "rgba(255, 255, 180, 1)",
     "rgba(255, 180, 180, 1)",
   ]
-  return colors[Math.floor(Math.random() * colors.length)]
+  return colors[index % colors.length]
 }
 
 interface ProfileCardProps {
@@ -28,12 +29,17 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
-  const { name, avatar } = profile
+  const { id, name, avatar } = profile
   const avatarLetter = name.charAt(0).toUpperCase()
-  const avatarColor = getRandomColor()
+  const avatarColor = getAvatarColor(id)
+  const navigate = useNavigate()
+
+  const handleCardClick = () => {
+    navigate("/projects")
+  }
 
   return (
-    <ProfileCardContainer>
+    <ProfileCardContainer onClick={handleCardClick}>
       <Avatar color={avatar ? undefined : avatarColor}>
         {avatar ? (
           <img
