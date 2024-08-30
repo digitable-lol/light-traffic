@@ -14,12 +14,18 @@ export const ProfileCardContainer = styled(Card)({
   },
 })
 
-export const Avatar = styled("img")({
+export const Avatar = styled("div")<{ color: string }>(({ color }) => ({
   width: "50px",
   height: "50px",
   borderRadius: "50%",
   marginRight: "16px",
-})
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: color,
+  fontSize: "20px",
+  color: "#fff",
+}))
 
 export const ProfileName = styled("div")({
   flexGrow: 1,
