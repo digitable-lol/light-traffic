@@ -70,12 +70,22 @@ const reports: Report[] = [
   },
 ]
 
+const stageColors: { [key: string]: string } = {
+  Initial: "#4caf50",
+  Onboarding: "#ff9800",
+  "In progress": "#2196f3",
+  "In review": "#9e9e9e",
+  "In test": "#f44336",
+}
+
 const tasks: Task[] = reports.map((report) => ({
   id: report.id.toString(),
   name: report.name,
   start: new Date(report.startDate),
   end: new Date(report.endDate),
   progress: 0,
+  color: stageColors[report.stage] || "#9e9e9e",
+  type: "project",
 }))
 
 export const ReportPage: React.FC = () => {
@@ -136,9 +146,6 @@ export const ReportPage: React.FC = () => {
     console.log(`Expander clicked for task ${task.id}`)
   }
 
-  const minDate = new Date(Math.min(...reports.map((r) => new Date(r.startDate).getTime())))
-  const maxDate = new Date(Math.max(...reports.map((r) => new Date(r.endDate).getTime())))
-
   return (
     <Container>
       <NavButtonContainer>
@@ -180,10 +187,10 @@ export const ReportPage: React.FC = () => {
             ganttHeight={500}
             viewMode={ViewMode.Week}
             preStepsCount={2}
-            locale="en-US"
+            locale="ru" //ochko1
             barFill={70}
             barCornerRadius={5}
-            barProgressColor="#4a90e2"
+            barProgressColor="#007aff" //ochko2
             barProgressSelectedColor="#007aff"
             barBackgroundColor="#d3d3d3"
             barBackgroundSelectedColor="#bfbfbf"
@@ -203,22 +210,18 @@ export const ReportPage: React.FC = () => {
             todayColor="rgba(255, 0, 0, 0.2)"
             viewDate={new Date("2024-08-01")}
             TooltipContent={({ task }) => <div>Tooltip for {task.name}</div>}
-            TaskListHeader={({ rowHeight }) => <div style={{ height: rowHeight }}>Header</div>}
+            TaskListHeader={({ rowHeight }) => <div style={{ height: rowHeight }}>Отчеты</div>}
             TaskListTable={({ tasks, rowHeight }) => (
               <table>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Start</th>
-                    <th>End</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   {tasks.map((task) => (
                     <tr key={task.id}>
                       <td>{task.name}</td>
-                      <td>{task.start.toDateString()}</td>
-                      <td>{task.end.toDateString()}</td>
                     </tr>
                   ))}
                 </tbody>
