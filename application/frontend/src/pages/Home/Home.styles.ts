@@ -22,7 +22,7 @@ export const ContentContainer = styled(Box)({
 })
 
 export const SearchContainer = styled(Box)({
-  marginBottom: "20px",
+  marginBottom: "31px",
 })
 
 export const ProfileCard = styled(Card)({
@@ -34,7 +34,7 @@ export const HeaderSection = styled(Box)({
   alignItems: "center",
   justifyContent: "space-between",
   gap: "16px",
-  marginTop: "49px",
+  marginTop: "75px",
 })
 
 export const TitleSection = styled(Box)({
@@ -42,6 +42,7 @@ export const TitleSection = styled(Box)({
   alignItems: "center",
   gap: "16px",
   flex: 1,
+  marginBottom: "40px",
 })
 
 export const StyledTitle = styled(Typography)({
