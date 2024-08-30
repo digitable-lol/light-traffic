@@ -2,15 +2,15 @@ import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import SearchIcon from "@mui/icons-material/Search"
-import { CardContent, Grid, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 
+import { ProfileCard } from "src/components/ProfileCard"
 import { SearchBar } from "src/components/SearchBar"
 
 import {
   ContentContainer,
   HeaderSection,
   ImageContainer,
-  ProfileCard,
   RootContainer,
   SearchContainer,
   StyledTitle,
@@ -28,6 +28,12 @@ export const Home: React.FC = () => {
   const handleClearSearch = () => {
     setSearchQuery("")
   }
+
+  const profiles = [
+    { id: 1, name: "Профиль 1", avatar: "https://via.placeholder.com/50" },
+    { id: 2, name: "Профиль 2", avatar: "https://via.placeholder.com/50" },
+    { id: 3, name: "Профиль 3", avatar: "https://via.placeholder.com/50" },
+  ]
 
   return (
     <RootContainer>
@@ -50,22 +56,11 @@ export const Home: React.FC = () => {
           />
         </SearchContainer>
 
-        <Grid container spacing={2}>
-          {[1, 2, 3].map((profile) => (
-            <Grid item xs={12} sm={6} md={4} key={profile}>
-              <ProfileCard>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    Профиль {profile}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Краткое описание профиля {profile}.
-                  </Typography>
-                </CardContent>
-              </ProfileCard>
-            </Grid>
+        <Box display="flex" flexDirection="column" gap={2}>
+          {profiles.map((profile) => (
+            <ProfileCard key={profile.id} profile={profile} />
           ))}
-        </Grid>
+        </Box>
       </ContentContainer>
     </RootContainer>
   )
