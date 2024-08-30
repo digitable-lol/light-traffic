@@ -30,10 +30,14 @@ export const Home: React.FC = () => {
   }
 
   const profiles = [
-    { id: 1, name: "Профиль 1", avatar: "https://via.placeholder.com/50" },
-    { id: 2, name: "Профиль 2", avatar: "https://via.placeholder.com/50" },
-    { id: 3, name: "Профиль 3", avatar: "https://via.placeholder.com/50" },
+    { id: 1, name: "Абоба", avatar: "" },
+    { id: 2, name: "Бибоба", avatar: "" },
+    { id: 3, name: "Вибоббв", avatar: "" },
   ]
+
+  const filteredProfiles = profiles.filter((profile) =>
+    profile.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
 
   return (
     <RootContainer>
@@ -57,7 +61,7 @@ export const Home: React.FC = () => {
         </SearchContainer>
 
         <Box display="flex" flexDirection="column" gap={2}>
-          {profiles.map((profile) => (
+          {filteredProfiles.map((profile) => (
             <ProfileCard key={profile.id} profile={profile} />
           ))}
         </Box>
