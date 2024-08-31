@@ -10,7 +10,7 @@ import { ClearButton, SearchContainer, SearchInput, ViewToggleButton } from "./S
 interface SearchBarProps {
   searchQuery: string
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  viewMode: "list" | "grid"
+  viewMode: "list" | "grid" | "timeline"
   onToggleViewMode: () => void
   onClearSearch: () => void
 }

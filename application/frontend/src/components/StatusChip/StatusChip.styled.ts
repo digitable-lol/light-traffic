@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Chip } from "@mui/material"
 
 interface StatusChipProps {
-  status: "Error" | "Success" | "In Progress"
+  status: "Error" | "Success" | "In Progress" | string
 }
 
 export const StatusChip = styled(Chip)<StatusChipProps>`
