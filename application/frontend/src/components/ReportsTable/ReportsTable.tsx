@@ -18,7 +18,7 @@ import {
 export interface Report {
   id: number
   name: string
-  status: "Error" | "Success" | "In Progress"
+  status: "Error" | "Success" | "In Progress" | string
   author: string
   authorAvatar: string
   startDate: string
