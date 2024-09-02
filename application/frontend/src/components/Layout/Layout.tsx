@@ -1,9 +1,10 @@
+import { Header } from "~components/Header"
+import { Theme } from "~components/Theme"
+import i18nInstance from "~locales/service"
+
+import React from "react"
 import { I18nextProvider } from "react-i18next"
 import { Outlet, useLocation } from "react-router-dom"
-
-import { Header } from "src/components/Header"
-import { Theme } from "src/components/Theme"
-import i18nInstance from "src/locales/service"
 
 import Markup from "./Layout.styled"
 

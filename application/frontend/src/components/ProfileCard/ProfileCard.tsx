@@ -40,7 +40,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
 
   return (
     <ProfileCardContainer onClick={handleCardClick}>
-      <Avatar color={avatar ? undefined : avatarColor}>
+      <Avatar color={avatar ? "black" : avatarColor}>
         {avatar ? (
           <img
             src={avatar}

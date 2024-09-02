@@ -16,7 +16,6 @@ import {
   DateCell,
   DateNumber,
   DayOfWeek,
-  HeaderText,
   LineContainer,
   ScrollableBox,
   StickyColumnCell,

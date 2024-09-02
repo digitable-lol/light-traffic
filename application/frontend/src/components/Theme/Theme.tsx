@@ -1,11 +1,11 @@
 import { ThemeProvider } from "styled-components"
+import { ThemeEnum } from "types/theme/enum"
 
 import { ReactNode, useState } from "react"
+import React from "react"
 
 import { createTheme } from "@mui/material"
 import CssBaseline from "@mui/material/CssBaseline"
-
-import { ThemeEnum } from "src/types/theme/enum"
 
 import { ThemeContext } from "./Theme.hooks"
 

@@ -1,11 +1,11 @@
+import { ProfileCard } from "~components/ProfileCard"
+import { SearchBar } from "~components/SearchBar"
+
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import SearchIcon from "@mui/icons-material/Search"
 import { Box } from "@mui/material"
-
-import { ProfileCard } from "src/components/ProfileCard"
-import { SearchBar } from "src/components/SearchBar"
 
 import {
   ContentContainer,

@@ -5,7 +5,7 @@ import ViewModuleIcon from "@mui/icons-material/ViewModule"
 import { IconButton } from "@mui/material"
 
 interface ViewModeToggleProps {
-  viewMode: "list" | "grid"
+  viewMode: "list" | "grid" | "timeline"
   onToggleViewMode: () => void
 }
 

@@ -1,6 +1,6 @@
+import { CONFIG } from "configs"
 import { createInstance } from "i18next"
 import I18NextHttpBackend from "i18next-http-backend"
-import { CONFIG } from "src/configs"
 
 const i18nInstance = createInstance({
   backend: {

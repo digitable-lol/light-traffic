@@ -1,13 +1,13 @@
+import { UserController } from "~api/controllers/UserController"
+import { useTheme } from "~components/Theme"
+import { ThemeEnum } from "~types/theme/enum"
+
 import React, { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 
 import { AccountCircleOutlined, MoreVertOutlined, NotificationsOutlined } from "@mui/icons-material"
 import { Button, IconButton, Switch, Tooltip, Typography } from "@mui/material"
-
-import { UserController } from "src/api/controllers/UserController"
-import { useTheme } from "src/components/Theme"
-import { ThemeEnum } from "src/types/theme/enum"
 
 import {
   Container,
