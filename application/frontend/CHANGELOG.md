@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/digitable-lol/light-traffic/compare/v1.4.0...v1.4.1) (2024-09-02)
+
+
+### Bug Fixes
+
+* **frontend:** resolve path to static files of translations ([5eda97e](https://github.com/digitable-lol/light-traffic/commit/5eda97e19e79310a48dea0d65fe9ca6410eac495))
+
 # [1.4.0](https://github.com/digitable-lol/light-traffic/compare/v1.3.0...v1.4.0) (2024-09-02)
 
 
