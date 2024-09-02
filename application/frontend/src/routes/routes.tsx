@@ -1,9 +1,10 @@
-import { RouteObject, useRoutes } from "react-router-dom"
+import { Layout } from "~components/Layout/Layout"
+import { Home } from "~pages/Home"
+import { ProjectPage } from "~pages/project"
+import { ReportPage } from "~pages/report"
 
-import { Layout } from "src/components/Layout/Layout"
-import { Home } from "src/pages/Home"
-import { ProjectPage } from "src/pages/Project"
-import { ReportPage } from "src/pages/Report"
+import React from "react"
+import { RouteObject, useRoutes } from "react-router-dom"
 
 const routes: RouteObject[] = [
   {

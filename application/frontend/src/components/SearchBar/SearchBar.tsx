@@ -14,8 +14,6 @@ import {
 interface SearchBarProps {
   searchQuery: string
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  viewMode: "list" | "grid" | "timeline"
-  onToggleViewMode: () => void
   onClearSearch: () => void
   variant?: "standard" | "outlined"
   startIcon?: React.ReactNode

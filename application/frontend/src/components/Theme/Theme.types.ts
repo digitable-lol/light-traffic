@@ -1,6 +1,6 @@
-import { Theme } from "@mui/material"
+import { ThemeEnum } from "types/theme/enum"
 
-import { ThemeEnum } from "src/types/theme/enum"
+import { Theme } from "@mui/material"
 
 export type ThemeContextTypes = {
   currentTheme: ThemeEnum

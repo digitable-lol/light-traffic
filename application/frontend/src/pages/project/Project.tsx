@@ -1,14 +1,14 @@
+import { NavButton } from "~components/NavButton"
+import { ProjectCard } from "~components/ProjectCard"
+import { SearchBar } from "~components/SearchBar"
+
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import HomeIcon from "@mui/icons-material/Home"
 import SearchIcon from "@mui/icons-material/Search"
 
-import settings from "src/assets/settings.svg"
-import { NavButton } from "src/components/NavButton"
-import { ProjectCard } from "src/components/ProjectCard"
-import { SearchBar } from "src/components/SearchBar"
-
+import Settings from "../../assets/settings.svg?react"
 import {
   Container,
   HeaderSection,
@@ -50,7 +50,7 @@ export const ProjectPage: React.FC = () => {
       </NavButtonContainer>
       <HeaderSection>
         <TitleSection>
-          <img src={settings} alt={t("settings")} style={{ width: 40, height: 40 }} />
+          <Settings style={{ width: 40, height: 40 }} />
           <StyledTitle>{t("projectList")}</StyledTitle>
         </TitleSection>
         {/* <CreateProjectContainer>

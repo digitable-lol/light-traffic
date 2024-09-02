@@ -5,7 +5,7 @@ import { StyledBreadcrumb } from "./NavButton.styled"
 interface NavButtonProps {
   to: string
   children: React.ReactNode
-  icon?: React.ReactNode
+  icon?: React.ReactElement
 }
 
 export const NavButton: React.FC<NavButtonProps> = ({ to, children, icon }) => {
