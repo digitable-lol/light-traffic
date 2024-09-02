@@ -1,3 +1,54 @@
+# [1.4.0](https://github.com/digitable-lol/light-traffic/compare/v1.3.0...v1.4.0) (2024-09-02)
+
+
+### Bug Fixes
+
+* add filter ([d66c3b2](https://github.com/digitable-lol/light-traffic/commit/d66c3b2abb18b7ddd307689180c0b7d0dfced0c1))
+* add outlined search bar ([4e8153c](https://github.com/digitable-lol/light-traffic/commit/4e8153c77eaaffaf74f012e29ddf09b7369bd4b1))
+* add random backgraund color ([a103c79](https://github.com/digitable-lol/light-traffic/commit/a103c79e8ec52831fc381d0aee9e3a20a2262ab2))
+* add stack icon and fix title style ([6e1b52d](https://github.com/digitable-lol/light-traffic/commit/6e1b52d05c93e7868fa955278dff6f072802d58e))
+* center elements ([9a7972e](https://github.com/digitable-lol/light-traffic/commit/9a7972e25ea30a4bc1d6fbe78995825718ed66b8))
+* change borders in table ([50cb871](https://github.com/digitable-lol/light-traffic/commit/50cb8713b208d6cc8a3f490bf30f02e7178934c9))
+* change gantt`s header ([60f699f](https://github.com/digitable-lol/light-traffic/commit/60f699f6f70354ad2359e683ff469ff6595b1b25))
+* change icon ([40e0db9](https://github.com/digitable-lol/light-traffic/commit/40e0db9b0c05203dabe32984278e254660aa5e5a))
+* change margin ([44cd4e4](https://github.com/digitable-lol/light-traffic/commit/44cd4e4d8371fba31b9de1d3e5974f8a0729a90d))
+* change margin ([0dd9a2d](https://github.com/digitable-lol/light-traffic/commit/0dd9a2d1a8769fb9d062b95b3bad0e46ee322246))
+* change routes ([7a99cda](https://github.com/digitable-lol/light-traffic/commit/7a99cda8372edf1994c31fcd0c283a299891228f))
+* change status chip color ([608d85e](https://github.com/digitable-lol/light-traffic/commit/608d85e555e5b0603bae2e863e1a0e8cdff4536b))
+* change status selector ([4cc155a](https://github.com/digitable-lol/light-traffic/commit/4cc155a55bc3629b8b2c8024276c57797664f9c6))
+* change style for card ([ee15944](https://github.com/digitable-lol/light-traffic/commit/ee15944b5583140fd6e6ab0bba000126e94bbe88))
+* change timeline`s style ([d0d4e65](https://github.com/digitable-lol/light-traffic/commit/d0d4e65304b748fc094bf860e0d8af06fd18cf13))
+* delete backgraund ([94157b4](https://github.com/digitable-lol/light-traffic/commit/94157b4170e01690fbaae725a239bc99eab3add6))
+* delete unnecessary route ([d455867](https://github.com/digitable-lol/light-traffic/commit/d45586754a7d2b799bfcd8bbb5b770c016e81eed))
+* fix backgraund color ([af98c37](https://github.com/digitable-lol/light-traffic/commit/af98c37ccb3d2e27615a154c987d13302374abc1))
+* fix header display ([7d084f4](https://github.com/digitable-lol/light-traffic/commit/7d084f42be20c21b9f30d08be0b210b6396e45bf))
+* fix icons style in the header ([8ec6f69](https://github.com/digitable-lol/light-traffic/commit/8ec6f69bbc6e2c0cfee6d186b2e8c98c5200fbca))
+* fix navigation ([044cb32](https://github.com/digitable-lol/light-traffic/commit/044cb32284e2c182b3e11a2936b4e418e28366b6))
+* fix project route ([734fe13](https://github.com/digitable-lol/light-traffic/commit/734fe13a9d4b65067598aacda213705f5845326f))
+* fix style for goals table ([1ddf2f7](https://github.com/digitable-lol/light-traffic/commit/1ddf2f7dbc1983a290999aad761b36775b1bba2e))
+* Improve NavButton ([69e15fc](https://github.com/digitable-lol/light-traffic/commit/69e15fc93af7a36b0e5d488a01d0c677ea2590de))
+* remove display from component ([ef087a6](https://github.com/digitable-lol/light-traffic/commit/ef087a681c2040482164eddf16ee4e0f2569451e))
+* use a different icon and font ([3c11f12](https://github.com/digitable-lol/light-traffic/commit/3c11f12c276aba9a0ffd39131d0d7baaf40c7d47))
+* use another component from the MUI library ([13c2723](https://github.com/digitable-lol/light-traffic/commit/13c2723536fb6bb7a2fa98a12ed7f456477a503f))
+* use new components ([a5a375d](https://github.com/digitable-lol/light-traffic/commit/a5a375dc440403f7e16f0d47714faa0206a79812))
+
+
+### Features
+
+* add gantt lib ([942da97](https://github.com/digitable-lol/light-traffic/commit/942da97346d87f9d83bf2366b5a1b13778563223))
+* add image ([2b6872f](https://github.com/digitable-lol/light-traffic/commit/2b6872f65c7c503b3e0f9488d3058bf47c1d989d))
+* add login page ([b0e210e](https://github.com/digitable-lol/light-traffic/commit/b0e210ef06a8f155b7337bfae86879e988d8bb15))
+* add navigate ([738beb7](https://github.com/digitable-lol/light-traffic/commit/738beb72c3d43788a5c9f07d41b984b0ac3016e0))
+* add profile card ([9662305](https://github.com/digitable-lol/light-traffic/commit/9662305172deda4311b05392b5c68b7e9342235e))
+* add profile card component ([8b8527f](https://github.com/digitable-lol/light-traffic/commit/8b8527fa66b6af8ed6b90aab67fba79669a216db))
+* add translate ([d5d8c3f](https://github.com/digitable-lol/light-traffic/commit/d5d8c3f7678eeaecf819ce6e35c2b395ede31fe9))
+* add translate ([7d0fb8f](https://github.com/digitable-lol/light-traffic/commit/7d0fb8f4958c0e335958b5cd6d3f95ffca363b62))
+* add translstion ([796c595](https://github.com/digitable-lol/light-traffic/commit/796c59579fe277bc73362d45ca42a709af9ac954))
+* **frontend:** add login page ([bcfc5c1](https://github.com/digitable-lol/light-traffic/commit/bcfc5c190df6be9e310a80408370408e02acca9f))
+* init gantt lib ([49df417](https://github.com/digitable-lol/light-traffic/commit/49df417a387f8807fa4efa69c4b98d47dd258f49))
+* move the display change as a new component ([48ac0e5](https://github.com/digitable-lol/light-traffic/commit/48ac0e52186da59684a350f2499a60047f6a365f))
+* update indents ([93df0a3](https://github.com/digitable-lol/light-traffic/commit/93df0a3f4a449b43845196a28998c39130a20bb1))
+
 # [1.3.0](https://github.com/digitable-lol/light-traffic/compare/v1.2.3...v1.3.0) (2024-08-31)
 
 
