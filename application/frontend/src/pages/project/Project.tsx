@@ -44,7 +44,7 @@ export const ProjectPage: React.FC = () => {
   return (
     <Container>
       <NavButtonContainer>
-        <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
+        <NavButton to="/projects" icon={<HomeIcon fontSize="small" />}>
           {t("projectList")}
         </NavButton>
       </NavButtonContainer>
