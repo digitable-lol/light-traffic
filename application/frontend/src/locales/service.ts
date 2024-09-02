@@ -4,7 +4,7 @@ import I18NextHttpBackend from "i18next-http-backend"
 
 const i18nInstance = createInstance({
   backend: {
-    loadPath: `${CONFIG.basename}/public/locales/{{ns}}/{{lng}}.json`,
+    loadPath: `/locales/{{ns}}/{{lng}}.json`,
   },
   fallbackLng: "ru",
   interpolation: {
