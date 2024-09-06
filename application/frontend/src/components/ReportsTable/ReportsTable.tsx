@@ -1,8 +1,10 @@
 import dayjs from "dayjs"
 
-import React from "react"
+import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 
+import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined"
+import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined"
 import { Table, TableBody, TableHead } from "@mui/material"
 
 import StatusChipComponent from "../StatusChip/StatusChip"
@@ -31,8 +33,22 @@ interface ReportsTableProps {
   reports: Report[]
 }
 
-export const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
+const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
   const { t } = useTranslation()
+
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
+  const [sortedReports, setSortedReports] = useState<Report[]>(reports)
+
+  const handleSort = () => {
+    const sorted = [...reports].sort((a, b) => {
+      const aDate = dayjs(a.endDate).valueOf()
+      const bDate = dayjs(b.endDate).valueOf()
+      return sortOrder === "asc" ? aDate - bDate : bDate - aDate
+    })
+
+    setSortedReports(sorted)
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+  }
 
   return (
     <CustomTableContainer>
@@ -42,12 +58,24 @@ export const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
             <StyledTableCell>{t("reportsTable.name")}</StyledTableCell>
             <StyledTableCell>{t("reportsTable.status")}</StyledTableCell>
             <StyledTableCell>{t("reportsTable.author")}</StyledTableCell>
-            <StyledTableCell>{t("reportsTable.startDate")}</StyledTableCell>
+            <StyledTableCell
+              onClick={handleSort}
+              style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+            >
+              {t("reportsTable.startDate")}
+              {sortOrder === "asc" ? (
+                <ArrowDropUpOutlinedIcon style={{ marginLeft: "8px" }} />
+              ) : sortOrder === "desc" ? (
+                <ArrowDropDownOutlinedIcon style={{ marginLeft: "8px" }} />
+              ) : (
+                <ArrowDropUpOutlinedIcon style={{ marginLeft: "8px", opacity: 0.5 }} />
+              )}
+            </StyledTableCell>
             <StyledTableCell>{t("reportsTable.endDate")}</StyledTableCell>
           </TableHeaderRow>
         </TableHead>
         <TableBody>
-          {reports.map((report) => (
+          {sortedReports.map((report) => (
             <StyledTableRow key={report.id}>
               <StyledTableCell>
                 <ProjectName>{report.name}</ProjectName>
