@@ -1,4 +1,5 @@
 import dayjs from "dayjs"
+import { CustomMenuItem } from "~components/CustomMenuItem"
 
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -77,9 +78,15 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                   <FormControl fullWidth variant="outlined">
                     <InputLabel>{t("reportOverlay.trafficLightColor")}</InputLabel>
                     <Select label={t("reportOverlay.trafficLightColor")} defaultValue="">
-                      <MenuItem value="Success">{t("reportOverlay.success")}</MenuItem>
-                      <MenuItem value="Error">{t("reportOverlay.error")}</MenuItem>
-                      <MenuItem value="Warning">{t("reportOverlay.warning")}</MenuItem>
+                      <CustomMenuItem status="Error" value="Error">
+                        {t("reportOverlay.error")}
+                      </CustomMenuItem>
+                      <CustomMenuItem status="Warning" value="Warning">
+                        {t("reportOverlay.warning")}
+                      </CustomMenuItem>
+                      <CustomMenuItem status="Success" value="Success">
+                        {t("reportOverlay.success")}
+                      </CustomMenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
