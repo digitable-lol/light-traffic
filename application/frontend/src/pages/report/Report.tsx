@@ -123,7 +123,6 @@ export const ReportPage: React.FC = () => {
           variant="standard"
           placeholder={t("searchPlaceholder")}
         />
-        <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />
       </SearchBarContainer>
       <ReportListContainer>
         <ReportsTable reports={filteredReports} />
