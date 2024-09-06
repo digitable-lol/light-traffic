@@ -8,6 +8,7 @@ import { ViewModeToggle } from "~components/ViewModeToggle"
 
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useParams } from "react-router-dom"
 
 import HomeIcon from "@mui/icons-material/Home"
 
@@ -70,6 +71,7 @@ const reports: Report[] = [
 
 export const ReportPage: React.FC = () => {
   const { t } = useTranslation()
+  const { userId, projectId } = useParams<{ userId: string; projectId: string }>()
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [viewMode, setViewMode] = useState<"list" | "timeline">("list")
   const [isOverlayOpen, setOverlayOpen] = useState<boolean>(false)
@@ -102,10 +104,12 @@ export const ReportPage: React.FC = () => {
     <Container>
       <NavButtonContainer>
         <StyledBreadcrumbs aria-label="breadcrumb">
-          <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
+          <NavButton to="/${userId}/projects" icon={<HomeIcon fontSize="small" />}>
             {t("projectList")}
           </NavButton>
-          <NavButton to="/projects/1">{t("projectName", { name: "Название проекта" })}</NavButton>
+          <NavButton to="/${userId}/projects/${projectId}">
+            {t("projectName", { name: "Название проекта" })}
+          </NavButton>
         </StyledBreadcrumbs>
       </NavButtonContainer>
       <HeaderSection>

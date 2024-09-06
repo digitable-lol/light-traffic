@@ -1,4 +1,5 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 
@@ -13,13 +14,23 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const { id, name, avatar } = project
+  const navigate = useNavigate()
+
+  const handleCardClick = () => {
+    const userId = 1
+    navigate(`/${userId}/projects/${id}/reports`)
+  }
+
   return (
-    <CardContainer>
-      <Avatar src={project.avatar} alt={project.name} />
-      <ProjectName>{project.name}</ProjectName>
+    <CardContainer onClick={handleCardClick}>
+      <Avatar src={avatar} alt={name} />
+      <ProjectName>{name}</ProjectName>
       <ArrowIcon>
         <ArrowForwardIcon />
       </ArrowIcon>
     </CardContainer>
   )
 }
+
+export default ProjectCard

@@ -35,7 +35,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   const navigate = useNavigate()
 
   const handleCardClick = () => {
-    navigate("/projects")
+    navigate("${id}/projects")
   }
 
   return (
