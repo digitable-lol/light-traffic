@@ -16,6 +16,24 @@ export const StyledTable = styled(Table)`
 export const StyledTableCell = styled(TableCell)`
   padding: 8px;
   border: none;
+
+  &:first-of-type {
+    width: 200px;
+  }
+
+  &:nth-of-type(2) {
+    width: 150px;
+  }
+
+  &:nth-of-type(3) {
+    width: 300px;
+  }
+
+  &:last-of-type {
+    width: 48px;
+    padding: 0;
+    text-align: center;
+  }
 `
 
 export const StyledTableRow = styled(TableRow)`

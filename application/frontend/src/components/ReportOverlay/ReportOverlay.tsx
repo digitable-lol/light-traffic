@@ -60,6 +60,10 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
     setGoals(updatedGoals)
   }
 
+  const handleDeleteGoal = (index: number) => {
+    setGoals(goals.filter((_, i) => i !== index))
+  }
+
   return (
     <>
       <Backdrop isOpen={isOpen} />
@@ -200,7 +204,11 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                       </Button>
                     </Grid>
                     <Grid item xs={12}>
-                      <GoalsTable goals={goals} onGoalChange={handleGoalChange} />
+                      <GoalsTable
+                        goals={goals}
+                        onGoalChange={handleGoalChange}
+                        onDeleteGoal={handleDeleteGoal}
+                      />
                     </Grid>
                   </>
                 )}
