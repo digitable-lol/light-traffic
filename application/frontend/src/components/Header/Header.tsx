@@ -84,18 +84,6 @@ export const Header: React.FC = () => {
 
       <RightSection>
         <IconButtons>
-          <Tooltip title={t("notifications")}>
-            <IconButton
-              sx={{
-                backgroundColor: "rgba(238, 238, 238, 1)",
-                borderRadius: "6px",
-                width: "28px",
-                height: "28px",
-              }}
-            >
-              <NotificationsOutlined />
-            </IconButton>
-          </Tooltip>
           <Tooltip title={t("profile")}>
             <IconButton
               sx={{
