@@ -99,13 +99,6 @@ export const Header: React.FC = () => {
         </IconButtons>
 
         <Switches>
-          <Tooltip title={t("toggleTheme")}>
-            <Switch
-              onChange={(_, checked) => {
-                change(checked ? ThemeEnum.Dark : ThemeEnum.Light)
-              }}
-            />
-          </Tooltip>
           <Tooltip title={t("changeLanguage")}>
             <Switch
               onChange={(_, checked) =>
