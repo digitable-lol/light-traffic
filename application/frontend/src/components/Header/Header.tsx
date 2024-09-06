@@ -52,20 +52,6 @@ export const Header: React.FC = () => {
             {t("projects")}
           </Button>
           <Button
-            onClick={() => console.log("Quiz clicked")}
-            sx={{
-              color: "inherit",
-              textDecoration: "none",
-              textTransform: "none",
-              "&:hover": {
-                color: theme.palette.primary.main,
-                textDecoration: "underline",
-              },
-            }}
-          >
-            {t("quiz")}
-          </Button>
-          <Button
             onClick={() => console.log("Rating clicked")}
             sx={{
               color: "inherit",
