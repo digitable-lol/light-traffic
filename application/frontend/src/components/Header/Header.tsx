@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
         </Logo>
         <NavButtons>
           <Button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/projects")}
             sx={{
               color: "inherit",
               textDecoration: "none",
