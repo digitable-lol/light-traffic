@@ -26,16 +26,18 @@ interface ProfileCardProps {
     name: string
     avatar?: string
   }
+  onClick?: () => void
 }
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
+export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onClick }) => {
   const { id, name, avatar } = profile
   const avatarLetter = name.charAt(0).toUpperCase()
   const avatarColor = getAvatarColor(id)
   const navigate = useNavigate()
 
   const handleCardClick = () => {
-    navigate("${id}/projects")
+    onClick?.()
+    navigate(`${id}/projects`)
   }
 
   return (

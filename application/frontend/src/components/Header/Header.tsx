@@ -1,6 +1,6 @@
+import { useUser } from "context/UserContext"
 import { UserController } from "~api/controllers/UserController"
 import { useTheme } from "~components/Theme"
-import { ThemeEnum } from "~types/theme/enum"
 
 import React, { useEffect } from "react"
 import { useTranslation } from "react-i18next"
@@ -23,6 +23,7 @@ export const Header: React.FC = () => {
   const { theme, change } = useTheme()
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
+  const { selectedUser } = useUser()
 
   useEffect(() => {
     UserController.get()
@@ -55,6 +56,11 @@ export const Header: React.FC = () => {
       </LeftSection>
 
       <RightSection>
+        {selectedUser && (
+          <Typography variant="subtitle1" sx={{ marginRight: "16px" }}>
+            {selectedUser.name}
+          </Typography>
+        )}
         <IconButtons>
           <Tooltip title={t("profile")}>
             <IconButton
