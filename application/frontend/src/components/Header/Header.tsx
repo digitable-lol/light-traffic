@@ -61,20 +61,7 @@ export const Header: React.FC = () => {
             {selectedUser.name}
           </Typography>
         )}
-        <IconButtons>
-          <Tooltip title={t("profile")}>
-            <IconButton
-              sx={{
-                backgroundColor: "rgba(238, 238, 238, 1)",
-                borderRadius: "6px",
-                width: "28px",
-                height: "28px",
-              }}
-            >
-              <AccountCircleOutlined />
-            </IconButton>
-          </Tooltip>
-        </IconButtons>
+        <IconButtons></IconButtons>
 
         <Switches>
           <Tooltip title={t("changeLanguage")}>
