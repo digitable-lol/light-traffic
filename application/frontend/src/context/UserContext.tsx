@@ -1,33 +1,36 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { ReactNode, createContext, useState } from "react"
 
-type User = {
+export interface User {
   id: number
   name: string
-  avatar: string
-} | null
+  avatar?: string
+}
 
-type UserContextType = {
-  selectedUser: User
+interface UserContextType {
+  selectedUser: User | null
   selectUser: (user: User) => void
+  users: User[]
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
-export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [selectedUser, setSelectedUser] = useState<User>(null)
+export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
+  const [users, setUsers] = useState<User[]>([])
 
-  const selectUser = (user: User) => {
-    setSelectedUser(user)
-  }
+  const selectUser = (user: User) => setSelectedUser(user)
 
   return (
-    <UserContext.Provider value={{ selectedUser, selectUser }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ selectedUser, selectUser, users, setUsers }}>
+      {children}
+    </UserContext.Provider>
   )
 }
 
 export const useUser = () => {
-  const context = useContext(UserContext)
-  if (!context) {
+  const context = React.useContext(UserContext)
+  if (context === undefined) {
     throw new Error("useUser must be used within a UserProvider")
   }
   return context

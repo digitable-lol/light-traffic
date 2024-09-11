@@ -1,33 +1,44 @@
 import { useUser } from "context/UserContext"
 import { UserController } from "~api/controllers/UserController"
 import { useTheme } from "~components/Theme"
+import UserSelectModal from "~components/UserSelectModal/UserSelectModal"
 
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 
-import { AccountCircleOutlined, MoreVertOutlined, NotificationsOutlined } from "@mui/icons-material"
-import { Button, IconButton, Switch, Tooltip, Typography } from "@mui/material"
+import { Button, Switch, Tooltip, Typography } from "@mui/material"
 
-import {
-  Container,
-  IconButtons,
-  LeftSection,
-  Logo,
-  NavButtons,
-  RightSection,
-  Switches,
-} from "./Header.styled"
+import { Container, LeftSection, Logo, NavButtons, RightSection, Switches } from "./Header.styled"
 
 export const Header: React.FC = () => {
-  const { theme, change } = useTheme()
+  const { theme } = useTheme()
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
-  const { selectedUser } = useUser()
+  const { selectedUser, users } = useUser()
+
+  const [isModalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     UserController.get()
   }, [])
+
+  const handleUserClick = () => {
+    setModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setModalOpen(false)
+  }
+
+  const handleSelectProfile = (profileId: number) => {
+    console.log("Selected Profile ID:", profileId)
+    setModalOpen(false)
+  }
+
+  useEffect(() => {
+    console.log("Loaded users:", users)
+  }, [users])
 
   return (
     <Container>
@@ -57,12 +68,14 @@ export const Header: React.FC = () => {
 
       <RightSection>
         {selectedUser && (
-          <Typography variant="subtitle1" sx={{ marginRight: "16px" }}>
+          <Typography
+            variant="subtitle1"
+            sx={{ marginRight: "16px", cursor: "pointer" }}
+            onClick={handleUserClick}
+          >
             {selectedUser.name}
           </Typography>
         )}
-        <IconButtons></IconButtons>
-
         <Switches>
           <Tooltip title={t("changeLanguage")}>
             <Switch
@@ -73,6 +86,13 @@ export const Header: React.FC = () => {
           </Tooltip>
         </Switches>
       </RightSection>
+
+      <UserSelectModal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        profiles={users}
+        onSelectProfile={handleSelectProfile}
+      />
     </Container>
   )
 }
