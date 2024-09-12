@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
+import { Report } from "~pages/report/Report"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined"
@@ -19,35 +20,28 @@ import {
   TableHeaderRow,
 } from "./ReportsTable.styled"
 
-export interface Report {
-  id: number
-  name: string
-  status: "Error" | "Success" | "In Progress" | string
-  author: string
-  authorAvatar: string
-  startDate: string
-  endDate: string
-}
-
 interface ReportsTableProps {
   reports: Report[]
+  onReportClick: (report: Report) => void
 }
 
-const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
+const ReportsTable: React.FC<ReportsTableProps> = ({ reports, onReportClick }) => {
   const { t } = useTranslation()
-
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
   const [sortedReports, setSortedReports] = useState<Report[]>(reports)
 
-  const handleSort = () => {
-    const sorted = [...reports].sort((a, b) => {
-      const aDate = dayjs(a.endDate).valueOf()
-      const bDate = dayjs(b.endDate).valueOf()
-      return sortOrder === "asc" ? aDate - bDate : bDate - aDate
-    })
+  useEffect(() => {
+    setSortedReports(
+      [...reports].sort((a, b) => {
+        const aDate = dayjs(a.endDate).valueOf()
+        const bDate = dayjs(b.endDate).valueOf()
+        return sortOrder === "asc" ? aDate - bDate : bDate - aDate
+      }),
+    )
+  }, [reports, sortOrder])
 
-    setSortedReports(sorted)
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+  const handleSort = () => {
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"))
   }
 
   return (
@@ -65,10 +59,8 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
               {t("reportsTable.startDate")}
               {sortOrder === "asc" ? (
                 <ArrowDropUpOutlinedIcon style={{ marginLeft: "8px" }} />
-              ) : sortOrder === "desc" ? (
-                <ArrowDropDownOutlinedIcon style={{ marginLeft: "8px" }} />
               ) : (
-                <ArrowDropUpOutlinedIcon style={{ marginLeft: "8px", opacity: 0.5 }} />
+                <ArrowDropDownOutlinedIcon style={{ marginLeft: "8px" }} />
               )}
             </StyledTableCell>
             <StyledTableCell>{t("reportsTable.endDate")}</StyledTableCell>
@@ -78,7 +70,9 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
           {sortedReports.map((report) => (
             <StyledTableRow key={report.id}>
               <StyledTableCell>
-                <ProjectName>{report.name}</ProjectName>
+                <ProjectName onClick={() => onReportClick(report)} style={{ cursor: "pointer" }}>
+                  {report.name}
+                </ProjectName>
               </StyledTableCell>
               <StyledTableCell>
                 <StatusChipComponent status={report.status} />

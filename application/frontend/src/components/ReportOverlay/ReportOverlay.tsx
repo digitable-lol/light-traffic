@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 import { CustomMenuItem } from "~components/CustomMenuItem"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import {
@@ -31,6 +31,21 @@ import {
 interface ReportOverlayProps {
   isOpen: boolean
   onClose: () => void
+  report: Report | null
+  isEditMode: boolean
+}
+
+export interface Report {
+  id: number
+  name: string
+  status: "Error" | "Success" | "In Progress" | string
+  author: string
+  authorAvatar: string
+  startDate: string
+  endDate: string
+  goals?: Goal[]
+  onVacation?: string
+  reporterOnVacation?: string
 }
 
 interface Goal {
@@ -39,12 +54,33 @@ interface Goal {
   description: string
 }
 
-export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose }) => {
+export const ReportOverlay: React.FC<ReportOverlayProps> = ({
+  isOpen,
+  onClose,
+  report,
+  isEditMode,
+}) => {
   const { t } = useTranslation()
   const [tab, setTab] = useState<number>(0)
   const [onVacation, setOnVacation] = useState<string>("")
   const [reporterOnVacation, setReporterOnVacation] = useState<string>("")
   const [goals, setGoals] = useState<Goal[]>([])
+  const [reportName, setReportName] = useState<string>("")
+  const [trafficLightColor, setTrafficLightColor] = useState<string>("")
+  const [startDate, setStartDate] = useState<string>(dayjs().format("YYYY-MM-DDTHH:mm"))
+  const [endDate, setEndDate] = useState<string>(dayjs().add(1, "day").format("YYYY-MM-DDTHH:mm"))
+
+  useEffect(() => {
+    if (isEditMode && report) {
+      setReportName(report.name || "")
+      setTrafficLightColor(report.status || "")
+      setStartDate(dayjs(report.startDate).format("YYYY-MM-DDTHH:mm"))
+      setEndDate(dayjs(report.endDate).format("YYYY-MM-DDTHH:mm"))
+      setGoals(report.goals || [])
+      setOnVacation(report.onVacation || "")
+      setReporterOnVacation(report.reporterOnVacation || "")
+    }
+  }, [isEditMode, report])
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue)
@@ -64,24 +100,50 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
     setGoals(goals.filter((_, i) => i !== index))
   }
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log({
+      reportName,
+      trafficLightColor,
+      startDate,
+      endDate,
+      onVacation,
+      reporterOnVacation,
+      goals,
+    })
+    onClose()
+  }
+
   return (
     <>
       <Backdrop isOpen={isOpen} />
       <CreateReportOverlay isOpen={isOpen}>
         <OverlayContainer>
           <OverlayHeader>
-            <Typography variant="h6">{t("reportOverlay.createReport")}</Typography>
+            <Typography variant="h6">
+              {isEditMode ? t("reportOverlay.editReport") : t("reportOverlay.createReport")}
+            </Typography>
           </OverlayHeader>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} container spacing={2}>
                 <Grid item xs={6}>
-                  <TextField fullWidth label={t("reportOverlay.reportName")} variant="outlined" />
+                  <TextField
+                    fullWidth
+                    label={t("reportOverlay.reportName")}
+                    variant="outlined"
+                    value={reportName}
+                    onChange={(e) => setReportName(e.target.value)}
+                  />
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl fullWidth variant="outlined">
                     <InputLabel>{t("reportOverlay.trafficLightColor")}</InputLabel>
-                    <Select label={t("reportOverlay.trafficLightColor")} defaultValue="">
+                    <Select
+                      label={t("reportOverlay.trafficLightColor")}
+                      value={trafficLightColor}
+                      onChange={(e) => setTrafficLightColor(e.target.value)}
+                    >
                       <CustomMenuItem status="Error" value="Error">
                         {t("reportOverlay.error")}
                       </CustomMenuItem>
@@ -106,7 +168,8 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                       shrink: true,
                     }}
                     variant="outlined"
-                    defaultValue={dayjs().format("YYYY-MM-DDTHH:mm")}
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -118,7 +181,8 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
                       shrink: true,
                     }}
                     variant="outlined"
-                    defaultValue={dayjs().add(1, "day").format("YYYY-MM-DDTHH:mm")}
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -217,7 +281,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({ isOpen, onClose })
               <Grid item xs={12} container spacing={2} justifyContent="flex-end">
                 <ButtonContainer>
                   <Button variant="contained" color="primary" type="submit">
-                    {t("reportOverlay.submit")}
+                    {isEditMode ? t("reportOverlay.save") : t("reportOverlay.submit")}
                   </Button>
                   <Button
                     variant="outlined"

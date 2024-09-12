@@ -4,7 +4,6 @@ import { NavButton } from "~components/NavButton"
 import ReportOverlay from "~components/ReportOverlay/ReportOverlay"
 import ReportsTable from "~components/ReportsTable/ReportsTable"
 import { SearchBar } from "~components/SearchBar"
-import { ViewModeToggle } from "~components/ViewModeToggle"
 
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -25,7 +24,7 @@ import {
 
 type ReportStage = "Initial" | "Onboarding" | "In progress" | "In review" | "In test"
 
-type Report = {
+export type Report = {
   id: number
   name: string
   status: string
@@ -59,7 +58,7 @@ const reports: Report[] = [
   },
   {
     id: 3,
-    name: "Report 3",
+    name: "aboba",
     status: "Warning",
     author: "Jane Smith",
     authorAvatar: "/path/to/avatar2.jpg",
@@ -75,6 +74,7 @@ export const ReportPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [viewMode, setViewMode] = useState<"list" | "timeline">("list")
   const [isOverlayOpen, setOverlayOpen] = useState<boolean>(false)
+  const [selectedReport, setSelectedReport] = useState<Report | null>(null)
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
@@ -89,11 +89,17 @@ export const ReportPage: React.FC = () => {
   }
 
   const handleCreateReport = () => {
+    setSelectedReport(null)
     setOverlayOpen(true)
   }
 
   const closeOverlay = () => {
     setOverlayOpen(false)
+  }
+
+  const handleReportClick = (report: Report) => {
+    setSelectedReport(report)
+    setOverlayOpen(true)
   }
 
   const filteredReports = reports.filter((report) =>
@@ -104,10 +110,10 @@ export const ReportPage: React.FC = () => {
     <Container>
       <NavButtonContainer>
         <StyledBreadcrumbs aria-label="breadcrumb">
-          <NavButton to="/${userId}/projects" icon={<HomeIcon fontSize="small" />}>
+          <NavButton to={`/${userId}/projects`} icon={<HomeIcon fontSize="small" />}>
             {t("projectList")}
           </NavButton>
-          <NavButton to="/${userId}/projects/${projectId}">
+          <NavButton to={`/${userId}/projects/${projectId}`}>
             {t("projectName", { name: "Название проекта" })}
           </NavButton>
         </StyledBreadcrumbs>
@@ -129,9 +135,14 @@ export const ReportPage: React.FC = () => {
         />
       </SearchBarContainer>
       <ReportListContainer>
-        <ReportsTable reports={filteredReports} />
+        <ReportsTable reports={filteredReports} onReportClick={handleReportClick} />
       </ReportListContainer>
-      <ReportOverlay isOpen={isOverlayOpen} onClose={closeOverlay} />
+      <ReportOverlay
+        isOpen={isOverlayOpen}
+        onClose={closeOverlay}
+        report={selectedReport}
+        isEditMode={!!selectedReport}
+      />
     </Container>
   )
 }
