@@ -77,6 +77,21 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
     }
   }, [isEditMode, report])
 
+  const resetForm = () => {
+    setReportName("")
+    setTrafficLightColor("")
+    setStartDate("")
+    setEndDate("")
+    setOnVacation("")
+    setReporterOnVacation("")
+    setGoals([])
+    setColorValues({
+      red: "",
+      orange: "",
+      green: "",
+    })
+  }
+
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue)
   }
@@ -111,6 +126,13 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
       goals,
       colorValues,
     })
+    onClose()
+  }
+
+  const handleCancel = () => {
+    if (!isEditMode) {
+      resetForm()
+    }
     onClose()
   }
 
@@ -288,7 +310,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
                   <Button
                     variant="outlined"
                     color="primary"
-                    onClick={onClose}
+                    onClick={handleCancel}
                     style={{ marginLeft: "8px" }}
                   >
                     {t("reportOverlay.cancel")}
