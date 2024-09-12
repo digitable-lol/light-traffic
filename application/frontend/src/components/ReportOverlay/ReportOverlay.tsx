@@ -46,17 +46,19 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
 }) => {
   const { t } = useTranslation()
   const [tab, setTab] = useState<number>(0)
-  const [onVacation, setOnVacation] = useState<string>(report?.onVacation || "")
-  const [reporterOnVacation, setReporterOnVacation] = useState<string>(
-    report?.reporterOnVacation || "",
-  )
-  const [goals, setGoals] = useState<Goal[]>(report?.goals || [])
-  const [reportName, setReportName] = useState<string>(report?.name || "")
-  const [trafficLightColor, setTrafficLightColor] = useState<string>(report?.status || "")
-  const [startDate, setStartDate] = useState<string>(
-    dayjs(report?.startDate).format("YYYY-MM-DDTHH:mm"),
-  )
-  const [endDate, setEndDate] = useState<string>(dayjs(report?.endDate).format("YYYY-MM-DDTHH:mm"))
+
+  const [reportName, setReportName] = useState<string>("")
+  const [trafficLightColor, setTrafficLightColor] = useState<string>("")
+  const [startDate, setStartDate] = useState<string>("")
+  const [endDate, setEndDate] = useState<string>("")
+  const [onVacation, setOnVacation] = useState<string>("")
+  const [reporterOnVacation, setReporterOnVacation] = useState<string>("")
+  const [goals, setGoals] = useState<Goal[]>([])
+  const [colorValues, setColorValues] = useState<{ [key: string]: string }>({
+    red: "",
+    orange: "",
+    green: "",
+  })
 
   useEffect(() => {
     if (isEditMode && report) {
@@ -67,6 +69,11 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
       setGoals(report.goals || [])
       setOnVacation(report.onVacation || "")
       setReporterOnVacation(report.reporterOnVacation || "")
+      setColorValues({
+        red: report.colorValues?.red || "",
+        orange: report.colorValues?.orange || "",
+        green: report.colorValues?.green || "",
+      })
     }
   }, [isEditMode, report])
 
@@ -88,6 +95,10 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
     setGoals(goals.filter((_, i) => i !== index))
   }
 
+  const handleColorChange = (color: string, value: string) => {
+    setColorValues((prev) => ({ ...prev, [color]: value }))
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log({
@@ -98,6 +109,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
       onVacation,
       reporterOnVacation,
       goals,
+      colorValues,
     })
     onClose()
   }
@@ -192,6 +204,8 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
                             variant="outlined"
                             label={t("reportOverlay.colorValue")}
                             fullWidth
+                            value={colorValues.red}
+                            onChange={(e) => handleColorChange("red", e.target.value)}
                           />
                         </ColorTextContainer>
                         <ColorTextContainer>
@@ -200,6 +214,8 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
                             variant="outlined"
                             label={t("reportOverlay.colorValue")}
                             fullWidth
+                            value={colorValues.orange}
+                            onChange={(e) => handleColorChange("orange", e.target.value)}
                           />
                         </ColorTextContainer>
                         <ColorTextContainer>
@@ -208,6 +224,8 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
                             variant="outlined"
                             label={t("reportOverlay.colorValue")}
                             fullWidth
+                            value={colorValues.green}
+                            onChange={(e) => handleColorChange("green", e.target.value)}
                           />
                         </ColorTextContainer>
                       </Grid>
