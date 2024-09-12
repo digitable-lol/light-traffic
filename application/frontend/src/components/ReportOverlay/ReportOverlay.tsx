@@ -33,7 +33,10 @@ interface ReportOverlayProps {
   onClose: () => void
   report: Report | null
   isEditMode: boolean
+  onDelete?: (report: Report) => void
 }
+
+type ReportStage = "Initial" | "Onboarding" | "In progress" | "In review" | "In test"
 
 export interface Report {
   id: number
@@ -43,6 +46,7 @@ export interface Report {
   authorAvatar: string
   startDate: string
   endDate: string
+  stage: ReportStage
   goals?: Goal[]
   onVacation?: string
   reporterOnVacation?: string
@@ -59,16 +63,21 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
   onClose,
   report,
   isEditMode,
+  onDelete,
 }) => {
   const { t } = useTranslation()
   const [tab, setTab] = useState<number>(0)
-  const [onVacation, setOnVacation] = useState<string>("")
-  const [reporterOnVacation, setReporterOnVacation] = useState<string>("")
-  const [goals, setGoals] = useState<Goal[]>([])
-  const [reportName, setReportName] = useState<string>("")
-  const [trafficLightColor, setTrafficLightColor] = useState<string>("")
-  const [startDate, setStartDate] = useState<string>(dayjs().format("YYYY-MM-DDTHH:mm"))
-  const [endDate, setEndDate] = useState<string>(dayjs().add(1, "day").format("YYYY-MM-DDTHH:mm"))
+  const [onVacation, setOnVacation] = useState<string>(report?.onVacation || "")
+  const [reporterOnVacation, setReporterOnVacation] = useState<string>(
+    report?.reporterOnVacation || "",
+  )
+  const [goals, setGoals] = useState<Goal[]>(report?.goals || [])
+  const [reportName, setReportName] = useState<string>(report?.name || "")
+  const [trafficLightColor, setTrafficLightColor] = useState<string>(report?.status || "")
+  const [startDate, setStartDate] = useState<string>(
+    dayjs(report?.startDate).format("YYYY-MM-DDTHH:mm"),
+  )
+  const [endDate, setEndDate] = useState<string>(dayjs(report?.endDate).format("YYYY-MM-DDTHH:mm"))
 
   useEffect(() => {
     if (isEditMode && report) {
@@ -164,9 +173,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
                     fullWidth
                     label={t("reportOverlay.startDate")}
                     type="datetime-local"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    InputLabelProps={{ shrink: true }}
                     variant="outlined"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
@@ -177,9 +184,7 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
                     fullWidth
                     label={t("reportOverlay.endDate")}
                     type="datetime-local"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    InputLabelProps={{ shrink: true }}
                     variant="outlined"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
@@ -291,6 +296,16 @@ export const ReportOverlay: React.FC<ReportOverlayProps> = ({
                   >
                     {t("reportOverlay.cancel")}
                   </Button>
+                  {isEditMode && onDelete && (
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      style={{ marginLeft: "8px" }}
+                      onClick={() => report && onDelete(report)}
+                    >
+                      {t("reportOverlay.delete")}
+                    </Button>
+                  )}
                 </ButtonContainer>
               </Grid>
             </Grid>

@@ -32,10 +32,19 @@ export type Report = {
   authorAvatar: string
   startDate: string
   endDate: string
+  goals?: Goal[]
+  onVacation?: string
+  reporterOnVacation?: string
   stage: ReportStage
 }
 
-const reports: Report[] = [
+interface Goal {
+  title: string
+  status: string
+  description: string
+}
+
+const initialReports: Report[] = [
   {
     id: 1,
     name: "Report 1",
@@ -75,6 +84,7 @@ export const ReportPage: React.FC = () => {
   const [viewMode, setViewMode] = useState<"list" | "timeline">("list")
   const [isOverlayOpen, setOverlayOpen] = useState<boolean>(false)
   const [selectedReport, setSelectedReport] = useState<Report | null>(null)
+  const [reports, setReports] = useState<Report[]>(initialReports)
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
@@ -100,6 +110,10 @@ export const ReportPage: React.FC = () => {
   const handleReportClick = (report: Report) => {
     setSelectedReport(report)
     setOverlayOpen(true)
+  }
+
+  const handleDeleteReport = (report: Report) => {
+    setReports((prevReports) => prevReports.filter((r) => r.id !== report.id))
   }
 
   const filteredReports = reports.filter((report) =>
@@ -142,6 +156,7 @@ export const ReportPage: React.FC = () => {
         onClose={closeOverlay}
         report={selectedReport}
         isEditMode={!!selectedReport}
+        onDelete={handleDeleteReport}
       />
     </Container>
   )
