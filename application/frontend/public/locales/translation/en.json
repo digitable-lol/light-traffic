@@ -53,7 +53,8 @@
     "yes":"Yes",
     "no":"No",
     "save":"Save",
-    "editReport":"Edit report"
+    "editReport":"Edit report",
+    "delete":"Delete"
   },
   "selectUser": "Select your user"
 }
