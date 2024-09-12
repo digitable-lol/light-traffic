@@ -1,5 +1,6 @@
 import dayjs from "dayjs"
 import { CustomMenuItem } from "~components/CustomMenuItem"
+import { Goal, Report } from "~types/types"
 
 import React, { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -34,28 +35,6 @@ interface ReportOverlayProps {
   report: Report | null
   isEditMode: boolean
   onDelete?: (report: Report) => void
-}
-
-type ReportStage = "Initial" | "Onboarding" | "In progress" | "In review" | "In test"
-
-export interface Report {
-  id: number
-  name: string
-  status: "Error" | "Success" | "In Progress" | string
-  author: string
-  authorAvatar: string
-  startDate: string
-  endDate: string
-  stage: ReportStage
-  goals?: Goal[]
-  onVacation?: string
-  reporterOnVacation?: string
-}
-
-interface Goal {
-  title: string
-  status: string
-  description: string
 }
 
 export const ReportOverlay: React.FC<ReportOverlayProps> = ({

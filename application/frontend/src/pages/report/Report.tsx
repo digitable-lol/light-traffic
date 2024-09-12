@@ -4,6 +4,7 @@ import { NavButton } from "~components/NavButton"
 import ReportOverlay from "~components/ReportOverlay/ReportOverlay"
 import ReportsTable from "~components/ReportsTable/ReportsTable"
 import { SearchBar } from "~components/SearchBar"
+import { Report } from "~types/types"
 
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -21,28 +22,6 @@ import {
   StyledTitle,
   TitleSection,
 } from "./Report.styled"
-
-type ReportStage = "Initial" | "Onboarding" | "In progress" | "In review" | "In test"
-
-export type Report = {
-  id: number
-  name: string
-  status: string
-  author: string
-  authorAvatar: string
-  startDate: string
-  endDate: string
-  goals?: Goal[]
-  onVacation?: string
-  reporterOnVacation?: string
-  stage: ReportStage
-}
-
-interface Goal {
-  title: string
-  status: string
-  description: string
-}
 
 const initialReports: Report[] = [
   {
