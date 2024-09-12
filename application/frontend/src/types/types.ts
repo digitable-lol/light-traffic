@@ -10,6 +10,11 @@ export interface Report {
   goals?: Goal[]
   onVacation?: string
   reporterOnVacation?: string
+  colorValues?: {
+    red?: string
+    orange?: string
+    green?: string
+  }
 }
 
 export interface Goal {
