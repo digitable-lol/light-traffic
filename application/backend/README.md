@@ -11,41 +11,41 @@
 ### Requirements
 
 - Python 3.11
+- Docker
 
 ### Run
-
-Create a python virtual environment and run these commands from root directory-
-
-```shell
-python3.11 -m venv venv
-. venv/bin/activate
-pip3.11 install -r requirements.txt
-python3.11 manage.py makemigrations && python3.11 manage.py migrate
+To strart containers, enter the command
+``` shell
+docker-compose up -d
 ```
 
-This will run the django app
-
-```shell
-python3.11 manage.py runserver
+To stop containers, enter the command
+``` shell
+docker-compose down
 ```
 
-To create db user
+Follow all the instructions listed below from ./application/backend
+
+Create a postgres Docker container using the command 
 
 ```shell
-python3.11 manage.py createsuperuser
+docker-compose up -d pgdb
+```
+After the container starts, enter this command
+
+```shell
+docker exec -it pgdb bash
 ```
 
-To connect to db
+To create a database, enter the commands in the sequence
 
 ```shell
-python3.11 manage.py dbshell
+su postgres
+createdb lighttraffic_db
 ```
 
-To cleanup db
-
+To exit the container console, type "exit" before exiting to the regular console
 ```shell
-python3.11 manage.py dbshell
-
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
+exit
+exit
 ```
