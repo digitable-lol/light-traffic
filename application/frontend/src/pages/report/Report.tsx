@@ -4,10 +4,11 @@ import { NavButton } from "~components/NavButton"
 import ReportOverlay from "~components/ReportOverlay/ReportOverlay"
 import ReportsTable from "~components/ReportsTable/ReportsTable"
 import { SearchBar } from "~components/SearchBar"
-import { ViewModeToggle } from "~components/ViewModeToggle"
+import { Report } from "~types/types"
 
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useParams } from "react-router-dom"
 
 import HomeIcon from "@mui/icons-material/Home"
 
@@ -22,20 +23,7 @@ import {
   TitleSection,
 } from "./Report.styled"
 
-type ReportStage = "Initial" | "Onboarding" | "In progress" | "In review" | "In test"
-
-type Report = {
-  id: number
-  name: string
-  status: string
-  author: string
-  authorAvatar: string
-  startDate: string
-  endDate: string
-  stage: ReportStage
-}
-
-const reports: Report[] = [
+const initialReports: Report[] = [
   {
     id: 1,
     name: "Report 1",
@@ -58,7 +46,7 @@ const reports: Report[] = [
   },
   {
     id: 3,
-    name: "Report 3",
+    name: "aboba",
     status: "Warning",
     author: "Jane Smith",
     authorAvatar: "/path/to/avatar2.jpg",
@@ -70,9 +58,12 @@ const reports: Report[] = [
 
 export const ReportPage: React.FC = () => {
   const { t } = useTranslation()
+  const { userId, projectId } = useParams<{ userId: string; projectId: string }>()
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [viewMode, setViewMode] = useState<"list" | "timeline">("list")
   const [isOverlayOpen, setOverlayOpen] = useState<boolean>(false)
+  const [selectedReport, setSelectedReport] = useState<Report | null>(null)
+  const [reports, setReports] = useState<Report[]>(initialReports)
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
@@ -87,11 +78,21 @@ export const ReportPage: React.FC = () => {
   }
 
   const handleCreateReport = () => {
+    setSelectedReport(null)
     setOverlayOpen(true)
   }
 
   const closeOverlay = () => {
     setOverlayOpen(false)
+  }
+
+  const handleReportClick = (report: Report) => {
+    setSelectedReport(report)
+    setOverlayOpen(true)
+  }
+
+  const handleDeleteReport = (report: Report) => {
+    setReports((prevReports) => prevReports.filter((r) => r.id !== report.id))
   }
 
   const filteredReports = reports.filter((report) =>
@@ -102,10 +103,12 @@ export const ReportPage: React.FC = () => {
     <Container>
       <NavButtonContainer>
         <StyledBreadcrumbs aria-label="breadcrumb">
-          <NavButton to="/" icon={<HomeIcon fontSize="small" />}>
+          <NavButton to={`/${userId}/projects`} icon={<HomeIcon fontSize="small" />}>
             {t("projectList")}
           </NavButton>
-          <NavButton to="/projects/1">{t("projectName", { name: "Название проекта" })}</NavButton>
+          <NavButton to={`/${userId}/projects/${projectId}`}>
+            {t("projectName", { name: "Название проекта" })}
+          </NavButton>
         </StyledBreadcrumbs>
       </NavButtonContainer>
       <HeaderSection>
@@ -123,12 +126,17 @@ export const ReportPage: React.FC = () => {
           variant="standard"
           placeholder={t("searchPlaceholder")}
         />
-        <ViewModeToggle viewMode={viewMode} onToggleViewMode={toggleViewMode} />
       </SearchBarContainer>
       <ReportListContainer>
-        <ReportsTable reports={filteredReports} />
+        <ReportsTable reports={filteredReports} onReportClick={handleReportClick} />
       </ReportListContainer>
-      <ReportOverlay isOpen={isOverlayOpen} onClose={closeOverlay} />
+      <ReportOverlay
+        isOpen={isOverlayOpen}
+        onClose={closeOverlay}
+        report={selectedReport}
+        isEditMode={!!selectedReport}
+        onDelete={handleDeleteReport}
+      />
     </Container>
   )
 }

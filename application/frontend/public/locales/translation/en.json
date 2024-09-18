@@ -51,7 +51,10 @@
     "goals": "Goals",
     "colorValue": "Value",
     "yes":"Yes",
-    "no":"No"
+    "no":"No",
+    "save":"Save",
+    "editReport":"Edit report",
+    "delete":"Delete"
   },
   "selectUser": "Select your user"
 }

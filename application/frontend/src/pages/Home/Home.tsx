@@ -1,3 +1,4 @@
+import { useUser } from "context/UserContext"
 import { ProfileCard } from "~components/ProfileCard"
 import { SearchBar } from "~components/SearchBar"
 
@@ -20,6 +21,7 @@ import {
 export const Home: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("")
   const { t } = useTranslation()
+  const { selectUser } = useUser()
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
@@ -39,10 +41,13 @@ export const Home: React.FC = () => {
     profile.name.toLowerCase().includes(searchQuery.toLowerCase()),
   )
 
+  const handleProfileClick = (profile: { id: number; name: string; avatar: string }) => {
+    selectUser(profile)
+  }
+
   return (
     <RootContainer>
       <ImageContainer />
-
       <ContentContainer>
         <HeaderSection>
           <TitleSection>
@@ -62,7 +67,11 @@ export const Home: React.FC = () => {
 
         <Box display="flex" flexDirection="column" gap={2}>
           {filteredProfiles.map((profile) => (
-            <ProfileCard key={profile.id} profile={profile} />
+            <ProfileCard
+              key={profile.id}
+              profile={profile}
+              onClick={() => handleProfileClick(profile)}
+            />
           ))}
         </Box>
       </ContentContainer>

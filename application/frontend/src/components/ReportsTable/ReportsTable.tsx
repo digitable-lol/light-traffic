@@ -1,8 +1,11 @@
 import dayjs from "dayjs"
+import { Report } from "~pages/report/Report"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 
+import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined"
+import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined"
 import { Table, TableBody, TableHead } from "@mui/material"
 
 import StatusChipComponent from "../StatusChip/StatusChip"
@@ -17,22 +20,29 @@ import {
   TableHeaderRow,
 } from "./ReportsTable.styled"
 
-export interface Report {
-  id: number
-  name: string
-  status: "Error" | "Success" | "In Progress" | string
-  author: string
-  authorAvatar: string
-  startDate: string
-  endDate: string
-}
-
 interface ReportsTableProps {
   reports: Report[]
+  onReportClick: (report: Report) => void
 }
 
-export const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
+const ReportsTable: React.FC<ReportsTableProps> = ({ reports, onReportClick }) => {
   const { t } = useTranslation()
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
+  const [sortedReports, setSortedReports] = useState<Report[]>(reports)
+
+  useEffect(() => {
+    setSortedReports(
+      [...reports].sort((a, b) => {
+        const aDate = dayjs(a.endDate).valueOf()
+        const bDate = dayjs(b.endDate).valueOf()
+        return sortOrder === "asc" ? aDate - bDate : bDate - aDate
+      }),
+    )
+  }, [reports, sortOrder])
+
+  const handleSort = () => {
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"))
+  }
 
   return (
     <CustomTableContainer>
@@ -42,15 +52,27 @@ export const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
             <StyledTableCell>{t("reportsTable.name")}</StyledTableCell>
             <StyledTableCell>{t("reportsTable.status")}</StyledTableCell>
             <StyledTableCell>{t("reportsTable.author")}</StyledTableCell>
-            <StyledTableCell>{t("reportsTable.startDate")}</StyledTableCell>
+            <StyledTableCell
+              onClick={handleSort}
+              style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+            >
+              {t("reportsTable.startDate")}
+              {sortOrder === "asc" ? (
+                <ArrowDropUpOutlinedIcon style={{ marginLeft: "8px" }} />
+              ) : (
+                <ArrowDropDownOutlinedIcon style={{ marginLeft: "8px" }} />
+              )}
+            </StyledTableCell>
             <StyledTableCell>{t("reportsTable.endDate")}</StyledTableCell>
           </TableHeaderRow>
         </TableHead>
         <TableBody>
-          {reports.map((report) => (
+          {sortedReports.map((report) => (
             <StyledTableRow key={report.id}>
               <StyledTableCell>
-                <ProjectName>{report.name}</ProjectName>
+                <ProjectName onClick={() => onReportClick(report)} style={{ cursor: "pointer" }}>
+                  {report.name}
+                </ProjectName>
               </StyledTableCell>
               <StyledTableCell>
                 <StatusChipComponent status={report.status} />

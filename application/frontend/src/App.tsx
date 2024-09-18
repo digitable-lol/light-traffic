@@ -7,13 +7,16 @@ import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
 
 import { CONFIG } from "./configs"
+import { UserProvider } from "./context/UserContext"
 import { AppRouter } from "./routes"
 
 function App() {
   return (
-    <BrowserRouter basename={CONFIG.basename}>
-      <AppRouter />
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter basename={CONFIG.basename}>
+        <AppRouter />
+      </BrowserRouter>
+    </UserProvider>
   )
 }
 
