@@ -6,7 +6,8 @@ export const Container = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
+  padding: 0 16px;
+  height: 60px;
   background-color: ${({ theme }) => theme.palette.background.paper};
   color: ${({ theme }) => theme.palette.text.primary};
   box-shadow:

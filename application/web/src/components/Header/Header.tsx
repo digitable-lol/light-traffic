@@ -6,8 +6,10 @@ import { Button, IconButton, Switch, Tooltip, Typography } from "@mui/material"
 
 import { UserController } from "src/api/controllers/UserController"
 import { useTheme } from "src/components/Theme"
+import { useNavigationRoutes } from "src/routes/routes"
 import { ThemeEnum } from "src/types/theme/enum"
 
+import { Navbar } from "../Navbar"
 import {
   Container,
   IconButtons,
@@ -21,6 +23,7 @@ import {
 export const Header: React.FC = () => {
   const { theme, change } = useTheme()
   const { t, i18n } = useTranslation()
+  const navigationRoutes = useNavigationRoutes()
 
   useEffect(() => {
     UserController.get()
@@ -34,7 +37,8 @@ export const Header: React.FC = () => {
             LOGO
           </Typography>
         </Logo>
-        <NavButtons>
+        <Navbar tabs={navigationRoutes} />
+        {/* <NavButtons>
           <Button
             onClick={() => console.log("Home clicked")}
             sx={{
@@ -61,7 +65,7 @@ export const Header: React.FC = () => {
           >
             {t("projects")}
           </Button>
-        </NavButtons>
+        </NavButtons> */}
       </LeftSection>
 
       <RightSection>
