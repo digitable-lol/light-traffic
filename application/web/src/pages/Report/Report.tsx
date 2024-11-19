@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { Settings } from "@mui/icons-material"
 import { Container, Grid } from "@mui/material"
 
+import { Breadcrumbs } from "src/components/Breadcrumbs"
 import CreateReportButton from "src/components/CreateReportButton/CreateReportButton"
 import { NavButton } from "src/components/NavButton"
 import ReportOverlay from "src/components/ReportOverlay/ReportOverlay"
@@ -62,6 +63,7 @@ export const ReportPage: React.FC = () => {
   return (
     <StyledContainer>
       <Container maxWidth="lg">
+        <Breadcrumbs />
         <NavButton to="/">Home</NavButton>/
         <NavButton to="/projects">Проект название проекта</NavButton>
         <Header container>

@@ -42,8 +42,7 @@ export const SettingsButton = styled(Button)`
 
 export const CreateProjectContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
+  margin-left: auto;
 `
 
 export const ProjectList = styled.div`

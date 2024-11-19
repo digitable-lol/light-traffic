@@ -23,9 +23,14 @@ export const Navbar: React.FC<Props> = ({ tabs }) => {
   )
 
   return (
-    <Tabs  value={value} onChange={handleChange}>
+    <Tabs value={value} onChange={handleChange}>
       {tabs.map((tab) => (
-        <Tab sx={{ height: 60 }} label={tab.label} value={tab.to} />
+        <Tab
+          onClick={(event) => handleChange(event, tab.to)}
+          sx={{ height: 60 }}
+          label={tab.label}
+          value={tab.to}
+        />
       ))}
     </Tabs>
   )

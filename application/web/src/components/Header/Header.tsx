@@ -15,7 +15,6 @@ import {
   IconButtons,
   LeftSection,
   Logo,
-  NavButtons,
   RightSection,
   Switches,
 } from "./Header.styled"

@@ -1,25 +1,37 @@
 import React from "react"
+import { Link, useNavigate } from "react-router-dom"
 
-import { ArrowForwardIos } from "@mui/icons-material"
+import { ArrowForward } from "@mui/icons-material"
+import { Avatar } from "@mui/material"
 
-import { ArrowIcon, Avatar, CardContainer, ProjectName } from "./ProjectCard.styled"
+import { CardContainer, ProjectName } from "./ProjectCard.styled"
 
 interface ProjectCardProps {
   project: {
     id: number
     name: string
-    avatar: string
+    avatar?: string
   }
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const navigate = useNavigate()
+  const handleClick = (project) => {
+    navigate(`/projects/${project.id}`)
+  }
+  const avatarShortName = project.name
+    .split(" ")
+    .filter((word) => word)
+    .map((word) => word[0])
+    .join("")
+
   return (
-    <CardContainer>
-      <Avatar src={project.avatar} alt={project.name} />
+    <CardContainer onClick={() => handleClick(project)}>
+      <Avatar src={project.avatar} alt={project.name}>
+        {avatarShortName}
+      </Avatar>
       <ProjectName>{project.name}</ProjectName>
-      <ArrowIcon>
-        <ArrowForwardIos />
-      </ArrowIcon>
+      <ArrowForward />
     </CardContainer>
   )
 }

@@ -45,4 +45,7 @@ export const DateText = styled(Typography).attrs({
 
 export const CustomTableContainer = styled(TableContainer)`
   box-shadow: none;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
 `

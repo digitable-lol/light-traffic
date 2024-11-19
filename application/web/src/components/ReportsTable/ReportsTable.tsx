@@ -2,9 +2,8 @@ import dayjs from "dayjs"
 
 import React from "react"
 
-import { Table, TableBody, TableHead } from "@mui/material"
+import { Chip, Table, TableBody, TableHead } from "@mui/material"
 
-import StatusChipComponent from "../StatusChip/StatusChip"
 import {
   AuthorAvatar,
   AuthorContainer,
@@ -49,7 +48,7 @@ export const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
                 <ProjectName>{report.name}</ProjectName>
               </StyledTableCell>
               <StyledTableCell>
-                <StatusChipComponent status={report.status} />
+                <Chip label={report.status} color="warning" variant="outlined" size="medium" />
               </StyledTableCell>
               <StyledTableCell>
                 <AuthorContainer>

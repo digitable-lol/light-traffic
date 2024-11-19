@@ -1,42 +1,65 @@
 import React from "react"
 
-import { Settings } from "@mui/icons-material"
-import { Typography } from "@mui/material"
+import { Search, Settings } from "@mui/icons-material"
+import { IconButton, Input, InputAdornment, TextField, Typography } from "@mui/material"
 
-import { CreateProjectButton } from "src/components/CreateProjectButton"
-import { NavButton } from "src/components/NavButton"
+import { Breadcrumbs } from "src/components/Breadcrumbs"
 import { ProjectCard } from "src/components/ProjectCard"
 
-import { SettingsButton } from "./Project.styled"
-import {
-  Container,
-  CreateProjectContainer,
-  HeaderSection,
-  ProjectList,
-  TitleSection,
-} from "./Project.styled"
+import { Container, HeaderSection, ProjectList, TitleSection } from "./Project.styled"
 
 const projects = [
-  { id: 1, name: "Project Alpha", avatar: "https://via.placeholder.com/40" },
-  { id: 2, name: "Project Beta", avatar: "https://via.placeholder.com/40" },
+  { id: 1, name: "Project Alpha" },
+  { id: 2, name: "Project Beta" },
 ]
 
 export const ProjectPage: React.FC = () => {
   return (
     <Container>
-      <NavButton to="/">Home</NavButton>
+      <Breadcrumbs />
       <HeaderSection>
         <TitleSection>
-          <SettingsButton>
+          <IconButton
+            sx={{
+              width: 40,
+              height: 40,
+              backgroundColor: "primary.main",
+              color: "white",
+              borderRadius: 2,
+              "&:hover": {
+                backgroundColor: "primary.dark",
+              },
+            }}
+          >
             <Settings />
-          </SettingsButton>
-          <Typography variant="h5">Список проектов</Typography>
+          </IconButton>
+          <Typography variant="h5" fontWeight={500}>
+            Список проектов
+          </Typography>
         </TitleSection>
-
-        <CreateProjectContainer>
-          <CreateProjectButton onClick={() => console.log("Create Project")} />
-        </CreateProjectContainer>
       </HeaderSection>
+
+      <TextField
+        placeholder="Поиск"
+        variant="outlined"
+        fullWidth
+        sx={{
+          borderWidth: "0px",
+          borderColor: "transparent",
+        }}
+        InputProps={{
+          sx: {
+            background: "#EEEEEE",
+            borderWidth: "0px",
+            borderRadius: 7,
+          },
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          ),
+        }}
+      />
 
       <ProjectList>
         {projects.map((project) => (

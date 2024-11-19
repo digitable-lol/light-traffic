@@ -1,14 +1,10 @@
 import React from "react"
 
 import { StyledButton } from "./NavButton.styled"
+import { LinkProps } from "react-router-dom"
 
-interface NavButtonProps {
-  to: string
-  children: React.ReactNode
-}
-
-export const NavButton: React.FC<NavButtonProps> = ({ to, children }) => {
-  return <StyledButton to={to}>{children}</StyledButton>
+export const NavButton: React.FC<LinkProps> = ({ to, children, ...props }) => {
+  return <StyledButton to={to} {...props}>{children}</StyledButton>
 }
 
 export default NavButton
